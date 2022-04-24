@@ -36,4 +36,26 @@ List<Barraca> barracas = [
     cardapio: "Churrasquinhos e PF de Churrasquinho",
     imagemBarraca: "IMAGEM",
   ),
+  Barraca(
+    id: "4",
+    nomeBarraca: "Barraca do Kakumi",
+    descricao: "Cozinha Oriental",
+    cardapio: "Wraps, Arroz Oriental com Frango e Yakisoba",
+    imagemBarraca: "IMAGEM",
+  ),
+  Barraca(
+    id: "5",
+    nomeBarraca: "Barraca do Strogonoff",
+    descricao: "Strogonoff",
+    cardapio: "Strogonoff de Frango, Carne e Abobrinha",
+    imagemBarraca: "IMAGEM",
+  ),
+  Barraca(
+    id: "6",
+    nomeBarraca: "Barraca da Joaninha",
+    descricao: "Doces e PFs",
+    cardapio:
+        "Panqueca sem recheio, Feijoada sem Feijao e Peixe sem acompanhamento",
+    imagemBarraca: "IMAGEM",
+  ),
 ];
