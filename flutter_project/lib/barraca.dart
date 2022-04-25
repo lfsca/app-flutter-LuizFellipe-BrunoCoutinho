@@ -27,14 +27,14 @@ List<Barraca> barracas = [
     nomeBarraca: "Barraca do Amarelinho",
     descricao: "Yakisobas e Salgadinhos",
     cardapio: "Yakisobas e Jacalhau",
-    imagemBarraca: "IMAGEM",
+    imagemBarraca: "assets/img/amarelinho.jpeg",
   ),
   Barraca(
     id: "3",
     nomeBarraca: "Barraca do Churrasquinho",
     descricao: "Churrasquinhos e PFs",
     cardapio: "Churrasquinhos e PF de Churrasquinho",
-    imagemBarraca: "IMAGEM",
+    imagemBarraca: "assets/img/churrasquinho.jpeg",
   ),
   Barraca(
     id: "4",

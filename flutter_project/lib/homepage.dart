@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('QUEMtinhas')),
+        appBar: AppBar(title: const Text('Hora do Rango PUC-Rio')),
         body: Container(
             color: Color(0xFF736AB7),
             child: Center(
@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
                                     DetailPage(barracas[index]),
                               )),
                               child: Card(
+                                  color: Colors.deepPurple,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       side: BorderSide(
@@ -41,7 +42,6 @@ class HomePage extends StatelessWidget {
                                         width: 1,
                                       )),
                                   child: Container(
-                                      color: Colors.deepPurple,
                                       width: 100,
                                       height: 100,
                                       child: Center(

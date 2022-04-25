@@ -14,12 +14,23 @@ class DetailPage extends StatelessWidget {
           child: Center(
         child: Column(children: [
           Padding(padding: EdgeInsets.only(top: 30.0)),
-          Text('Descricao: ${barraca.descricao}', style: Style.commonTextStyle),
+          Text('Descricao:', style: Style.headerTextStyle),
+          Padding(padding: EdgeInsets.only(top: 30.0)),
+          Text('${barraca.descricao}', style: Style.commonTextStyle),
           Container(
               margin: new EdgeInsets.symmetric(vertical: 8.0),
               height: 2.0,
               width: 18.0),
-          Text('Cardapio: ${barraca.cardapio}', style: Style.commonTextStyle)
+          Center(child: Text('Cardapio:', style: Style.headerTextStyle)),
+          Padding(padding: EdgeInsets.only(top: 30.0)),
+          Text('${barraca.cardapio}', style: Style.commonTextStyle),
+          Padding(padding: EdgeInsets.only(top: 30.0)),
+          if (barraca.imagemBarraca != "IMAGEM")
+            (Image.asset(
+              barraca.imagemBarraca,
+              width: 250.0,
+              height: 250.0,
+            )),
         ]),
       ));
     }
