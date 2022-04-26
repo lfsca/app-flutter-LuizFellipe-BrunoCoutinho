@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_project/gradientappbar.dart';
 import 'package:flutter_project/detailpage.dart';
@@ -28,11 +26,11 @@ class HomePage extends StatelessWidget {
                             height: 100,
                             width: double.infinity,
                             child: GestureDetector(
-                              onTap: () =>
-                                  Navigator.of(context).push(PageRouteBuilder(
-                                pageBuilder: (_, __, ___) =>
-                                    DetailPage(barracas[index]),
-                              )),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, DetailPage.routeName,
+                                    arguments: barracas[index]);
+                              },
                               child: Card(
                                   color: Colors.deepPurple,
                                   shape: RoundedRectangleBorder(

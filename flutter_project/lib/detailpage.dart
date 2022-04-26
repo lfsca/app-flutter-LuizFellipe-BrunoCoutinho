@@ -3,12 +3,13 @@ import 'package:flutter_project/barraca.dart';
 import 'package:flutter_project/style.dart';
 
 class DetailPage extends StatelessWidget {
-  final Barraca barraca;
+  const DetailPage({Key? key}) : super(key: key);
 
-  DetailPage(this.barraca);
+  static const routeName = '/detailpage';
 
   @override
   Widget build(BuildContext context) {
+    final barraca = ModalRoute.of(context)!.settings.arguments as Barraca;
     Widget _getContent() {
       return Container(
           child: Center(
