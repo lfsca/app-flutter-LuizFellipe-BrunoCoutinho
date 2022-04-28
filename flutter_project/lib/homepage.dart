@@ -22,31 +22,30 @@ class HomePage extends StatelessWidget {
                       itemCount: barracas.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                            margin: EdgeInsets.all(20),
-                            height: 100,
-                            width: double.infinity,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, DetailPage.routeName,
-                                    arguments: barracas[index]);
-                              },
-                              child: Card(
-                                  color: Colors.deepPurple,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      side: BorderSide(
-                                        color: Colors.grey.withOpacity(0.2),
-                                        width: 1,
-                                      )),
-                                  child: Container(
-                                      width: 100,
-                                      height: 100,
-                                      child: Center(
-                                          child: Text(
-                                              barracas[index].nomeBarraca,
-                                              style: Style.commonTextStyle)))),
-                            ));
+                          margin: EdgeInsets.all(20),
+                          height: 100,
+                          width: double.infinity,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, DetailPage.routeName,
+                                  arguments: barracas[index]);
+                            },
+                            child: Card(
+                                color: Colors.deepPurple,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: BorderSide(
+                                      color: Colors.grey.withOpacity(0.2),
+                                      width: 1,
+                                    )),
+                                child: Container(
+                                    width: 100,
+                                    height: 100,
+                                    child: Center(
+                                        child: Text(barracas[index].nomeBarraca,
+                                            style: Style.headerTextStyle)))),
+                          ),
+                        );
                       })),
             ]))));
   }

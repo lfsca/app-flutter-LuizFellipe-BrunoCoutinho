@@ -63,6 +63,11 @@ flutter:
   assets:
    - assets/img/amarelinho.jpeg
    - assets/img/churrasquinho.jpeg
+   - assets/img/strogonoff.jpeg
+   - assets/img/kakumi.jpeg
+   - assets/img/milos.jpeg
+   - assets/img/joaninha.jpeg
+   - assets/img/estrela.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
