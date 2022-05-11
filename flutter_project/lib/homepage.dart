@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                             },
                             child: Card(
                                 color: createMaterialColor(
-                                    Color.fromARGB(255, 247, 212, 188)),
+                                    Color.fromARGB(255, 253, 202, 168)),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     side: BorderSide(
@@ -50,9 +50,11 @@ class HomePage extends StatelessWidget {
                                               alignment: Alignment.topRight,
                                               child: const Estrela())),
                                       Center(
+                                          child: Container(
+                                        padding: EdgeInsets.only(bottom: 16.0),
                                         child: Text(barracas[index].nomeBarraca,
                                             style: Style.headerTextStyle),
-                                      )
+                                      ))
                                     ]))),
                           ),
                         );
@@ -97,7 +99,7 @@ class _EstrelaState extends State<Estrela> {
         icon: (_isFavorited
             ? const Icon(Icons.star)
             : const Icon(Icons.star_border)),
-        color: Color.fromARGB(186, 250, 235, 100),
+        color: Color.fromARGB(255, 255, 230, 0),
         onPressed: () {},
       ),
     ));
