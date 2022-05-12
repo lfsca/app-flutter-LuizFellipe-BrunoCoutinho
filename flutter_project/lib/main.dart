@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/barraca.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.deepPurple,
         ),
-        home: HomePage(),
+        home: HomePage(barracas: fetchBarracas()),
         routes: <String, WidgetBuilder>{
           DetailPage.routeName: (context) => const DetailPage(),
         });

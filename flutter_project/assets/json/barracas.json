@@ -1,0 +1,317 @@
+[
+    {
+        "id": 1,
+        "nomeBarraca": "Barraca do Milos",
+        "descricao": "Salgados e PFs",
+        "imagemBarraca": "assets/img/milos.jpeg",
+        "avaliacoes": [
+            {
+                "autor": "anon_user1",
+                "nota": 4,
+                "comentario": "Muito bom, mas pouca batata"
+            },
+            {
+                "autor": "Washington Braga",
+                "nota": 5,
+                "comentario": "Incrível"
+            }
+        ],
+        "quentinhas": [
+            {
+                "nome": "Feijao Tropeiro",
+                "descricao": "Acompanha arroz e legumes",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":8,
+                        "preco":"12,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Panqueca de carne",
+                "descricao": "Com molho de tomate. Acompanha fritas",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":3,
+                        "preco":"12,00"
+                    },
+                    {
+                        "tamanho":"G",
+                        "quantidade":5,
+                        "preco":"15,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Strogonoff de frango",
+                "descricao": "Acompanha arroz e batata palha",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":4,
+                        "preco":"11,00"
+                    },
+                    {
+                        "tamanho":"G",
+                        "quantidade":1,
+                        "preco":"14,00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nomeBarraca": "Barraca do Amarelinho",
+        "descricao": "Yakisobas e Salgadinhos",
+        "imagemBarraca": "assets/img/amarelinho.jpeg",
+        "avaliacoes": [
+            {
+                "autor": "Sérgio Lifschitz",
+                "nota": 5,
+                "comentario": "Yakisoba excelente"
+            },
+            {
+                "autor": "Júlia Silva",
+                "nota": 3,
+                "comentario": "Veio meio frio, pouco saboroso"
+            }
+        ],
+        "quentinhas": [
+            {
+                "nome": "Yakisoba de legumes",
+                "descricao": "Delicioso yakisoba japonês com repolho, cenoura, acelga e brócolis picados, tudo regado no molho shoyu",
+                "tamanhos": [
+                    {
+                        "tamanho":"G",
+                        "quantidade":13,
+                        "preco":"10,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Yakisoba de carne",
+                "descricao": "Nosso carro-chefe. Yakisoba inigualável com carne uruguaia e legumes azeitados",
+                "tamanhos": [
+                    {
+                        "tamanho":"G",
+                        "quantidade":3,
+                        "preco":"12,00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nomeBarraca": "Barraca do Churrasquinho",
+        "descricao": "Churrasquinhos e PFs",
+        "imagemBarraca": "assets/img/churrasquinho.jpeg",
+        "avaliacoes": [
+            {
+                "autor": "Fernando Fernandes",
+                "nota": 5,
+                "comentario": "Baita churrasquinho"
+            }
+        ],
+        "quentinhas": [
+            {
+                "nome": "Espetinho de carne",
+                "descricao": "Acompanha arroz e fritas",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":6,
+                        "preco":"12,00"
+                    }
+                ]
+            },
+            {
+                "nome": "PF tradicional",
+                "descricao": "Arroz, feijão, carne, fritas e salada",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":3,
+                        "preco":"13,00"
+                    },
+                    {
+                        "tamanho":"G",
+                        "quantidade":5,
+                        "preco":"15,00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "nomeBarraca": "Barraca do Kakumi",
+        "descricao": "Cozinha Oriental",
+        "imagemBarraca": "assets/img/kakumi.jpeg",
+        "avaliacoes": [
+            {
+                "autor": "Mafalda Souza",
+                "nota": 5,
+                "comentario": "Melhor comida oriental que já comi na vida"
+            },
+            {
+                "autor": "Renata Pereira",
+                "nota": 5,
+                "comentario": "Imbatível"
+            },
+            {
+                "autor": "Rodolfo Paiva",
+                "nota": 1,
+                "comentario": "Não sei o que essas outras pessoas comeram, achei horrível."
+            }
+        ],
+        "quentinhas": [
+            {
+                "nome": "Wrap de camarão",
+                "descricao": "Camarão, couve e batata palha",
+                "tamanhos": [
+                    {
+                        "tamanho":"Único",
+                        "quantidade":1,
+                        "preco":"10,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Arroz Oriental com frango",
+                "descricao": "",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":3,
+                        "preco":"10,00"
+                    },
+                    {
+                        "tamanho":"M",
+                        "quantidade":5,
+                        "preco":"12,00"
+                    },
+                    {
+                        "tamanho":"G",
+                        "quantidade":1,
+                        "preco":"15,00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "nomeBarraca": "Barraca do Strogonoff",
+        "descricao": "Strogonoff",
+        "imagemBarraca": "assets/img/strogonoff.jpeg",
+        "avaliacoes": [
+            {
+                "autor": "amante_de_strogonoff",
+                "nota": 4,
+                "comentario": "Bonzinho"
+            },
+            {
+                "autor": "Jeferson Diniz",
+                "nota": 5,
+                "comentario": "Bonzão"
+            }
+        ],
+        "quentinhas": [
+            {
+                "nome": "Strogonoff de carne",
+                "descricao": "C/ arroz e batata palha",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":8,
+                        "preco":"12,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Strogonoff de frango",
+                "descricao": "C/ arroz e batata palha",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":1,
+                        "preco":"12,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Strogonoff de abobrinha",
+                "descricao": "Opção vegetatariana. C/ arroz e batata palha",
+                "tamanhos": [
+                    {
+                        "tamanho":"P",
+                        "quantidade":4,
+                        "preco":"11,00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "nomeBarraca": "Barraca da Joaninha",
+        "descricao": "Doces e PFs",
+        "imagemBarraca": "assets/img/joaninha.jpeg",
+        "avaliacoes": [
+            {
+                "autor": "Filho da joaninha",
+                "nota": 5,
+                "comentario": "Comida de mãe não tem igual"
+            },
+            {
+                "autor": "Nora da joaninha",
+                "nota": 3,
+                "comentario": "Podia ser melhor"
+            },
+            {
+                "autor": "Avó da joaninha",
+                "nota": 5,
+                "comentario": "Ensinei direitinho"
+            }
+        ],
+        "quentinhas": [
+            {
+                "nome": "Panqueca sem recheio",
+                "descricao": "Panqueca desprovida de recheio",
+                "tamanhos": [
+                    {
+                        "tamanho":"M",
+                        "quantidade":8,
+                        "preco":"12,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Feijoada sem feijão",
+                "descricao": "Feijoada em que não consta feijão",
+                "tamanhos": [
+                    {
+                        "tamanho":"M",
+                        "quantidade":11,
+                        "preco":"12,00"
+                    }
+                ]
+            },
+            {
+                "nome": "Peixe sem acompanhamento",
+                "descricao": "Só o peixe mesmo. Tem cara de tilápia pescada no Leme",
+                "tamanhos": [
+                    {
+                        "tamanho":"M",
+                        "quantidade":14,
+                        "preco":"12,00"
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -24,7 +24,7 @@ class DetailPage extends StatelessWidget {
               width: 18.0),
           Center(child: Text('Cardapio:', style: Style.headerTextStyle)),
           Padding(padding: EdgeInsets.only(top: 30.0)),
-          Text('${barraca.cardapio}', style: Style.commonTextStyle),
+          //Text('${barraca.cardapio}', style: Style.commonTextStyle),
           Padding(padding: EdgeInsets.only(top: 30.0)),
           if (barraca.imagemBarraca != "IMAGEM")
             (Image.asset(
