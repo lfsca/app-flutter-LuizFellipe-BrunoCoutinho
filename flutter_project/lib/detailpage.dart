@@ -12,28 +12,29 @@ class DetailPage extends StatelessWidget {
     final barraca = ModalRoute.of(context)!.settings.arguments as Barraca;
     Widget _getContent() {
       return Container(
+          color: Color.fromARGB(218, 250, 227, 227),
           child: Center(
-        child: Column(children: [
-          Padding(padding: EdgeInsets.only(top: 30.0)),
-          Text('Descricao:', style: Style.headerTextStyle),
-          Padding(padding: EdgeInsets.only(top: 30.0)),
-          Text('${barraca.descricao}', style: Style.commonTextStyle),
-          Container(
-              margin: new EdgeInsets.symmetric(vertical: 8.0),
-              height: 2.0,
-              width: 18.0),
-          Center(child: Text('Cardapio:', style: Style.headerTextStyle)),
-          Padding(padding: EdgeInsets.only(top: 30.0)),
-          //Text('${barraca.cardapio}', style: Style.commonTextStyle),
-          Padding(padding: EdgeInsets.only(top: 30.0)),
-          if (barraca.imagemBarraca != "IMAGEM")
-            (Image.asset(
-              barraca.imagemBarraca,
-              width: 250.0,
-              height: 250.0,
-            )),
-        ]),
-      ));
+            child: Column(children: [
+              Padding(padding: EdgeInsets.only(top: 30.0)),
+              Text('Descricao:', style: Style.headerTextStyle),
+              Padding(padding: EdgeInsets.only(top: 30.0)),
+              Text('${barraca.descricao}', style: Style.commonTextStyle),
+              Container(
+                  margin: new EdgeInsets.symmetric(vertical: 8.0),
+                  height: 2.0,
+                  width: 18.0),
+              Center(child: Text('Cardapio:', style: Style.headerTextStyle)),
+              Padding(padding: EdgeInsets.only(top: 30.0)),
+              //Text('${barraca.cardapio}', style: Style.commonTextStyle),
+              Padding(padding: EdgeInsets.only(top: 30.0)),
+              if (barraca.imagemBarraca != "IMAGEM")
+                (Image.asset(
+                  barraca.imagemBarraca,
+                  width: 250.0,
+                  height: 250.0,
+                )),
+            ]),
+          ));
     }
 
     // Container _getToolbar(BuildContext context) {

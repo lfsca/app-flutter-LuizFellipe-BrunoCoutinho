@@ -4,6 +4,7 @@ import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/barraca.dart';
 import 'dart:async';
 import 'package:flutter_project/style.dart';
+import 'package:flutter_project/palette.dart';
 
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('Hora do Rango PUC-Rio')),
         body: Container(
-            color: const Color(0xFF736AB7),
+            color: Color.fromARGB(218, 250, 227, 227),
             child: Center(
                 child: Column(children: <Widget>[
               const SizedBox(
@@ -60,7 +61,8 @@ class BarracaListWidget extends StatelessWidget {
                     arguments: barracas![index]);
               },
               child: Card(
-                  color: Colors.deepPurple,
+                  color:
+                      createMaterialColor(Color.fromARGB(255, 253, 202, 168)),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: BorderSide(
@@ -70,11 +72,73 @@ class BarracaListWidget extends StatelessWidget {
                   child: SizedBox(
                       width: 100,
                       height: 100,
-                      child: Center(
+                      child: Column(children: [
+                        Container(
+                            padding: EdgeInsets.only(right: 16.0),
+                            child: Align(
+                                alignment: Alignment.topRight,
+                                child: const Estrela())),
+                        Center(
+                            child: Container(
+                          padding: EdgeInsets.only(bottom: 16.0),
                           child: Text(barracas![index].nomeBarraca,
-                              style: Style.headerTextStyle)))),
+                              style: Style.headerTextStyle),
+                        ))
+                      ]))),
             ),
           );
         });
+  }
+}
+// class ImageDialog extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Dialog(
+//       child: Container(
+//         width: 200,
+//         height: 200,
+//         decoration: BoxDecoration(
+//             image: DecorationImage(
+//                 image: ExactAssetImage("assets/img/estrela.png"),
+//                 fit: BoxFit.cover)),
+//       ),
+//     );
+//   }
+// }
+
+class Estrela extends StatefulWidget {
+  const Estrela({Key? key}) : super(key: key);
+
+  @override
+  _EstrelaState createState() => _EstrelaState();
+}
+
+class _EstrelaState extends State<Estrela> {
+  bool _isFavorited = false;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: GestureDetector(
+      onDoubleTap: _toggleFavorite,
+      child: IconButton(
+        padding: const EdgeInsets.all(0),
+        alignment: Alignment.centerRight,
+        icon: (_isFavorited
+            ? const Icon(Icons.star)
+            : const Icon(Icons.star_border)),
+        color: Color.fromARGB(255, 255, 230, 0),
+        onPressed: () {},
+      ),
+    ));
+  }
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _isFavorited = false;
+      } else {
+        _isFavorited = true;
+      }
+    });
   }
 }
