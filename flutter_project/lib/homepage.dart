@@ -72,7 +72,7 @@ class BarracaListWidget extends StatelessWidget {
                   child: SizedBox(
                       width: 100,
                       height: 100,
-                      child: Column(children: [
+                      child: Stack(children: [
                         Container(
                             padding: EdgeInsets.only(right: 16.0),
                             child: Align(
@@ -80,7 +80,6 @@ class BarracaListWidget extends StatelessWidget {
                                 child: const Estrela())),
                         Center(
                             child: Container(
-                          padding: EdgeInsets.only(bottom: 16.0),
                           child: Text(barracas![index].nomeBarraca,
                               style: Style.headerTextStyle),
                         ))

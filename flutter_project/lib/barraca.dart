@@ -4,7 +4,7 @@ import 'package:flutter_project/avaliacao.dart';
 import 'dart:convert';
 
 class Barraca {
-  final String id;
+  final int id;
   final String nomeBarraca;
   final String descricao;
   final String imagemBarraca;
@@ -12,7 +12,7 @@ class Barraca {
   final List<Quentinha> quentinhas;
 
   Barraca(
-      {this.id = "a",
+      {this.id = 0,
       this.nomeBarraca = "a",
       this.descricao = "a",
       this.imagemBarraca = "a",
@@ -23,7 +23,7 @@ class Barraca {
     List<Quentinha> listaQuentinhas = [];
     List<Avaliacao> listaAvaliacoes = [];
 
-    for (var quentinha in json['quentinha']) {
+    for (var quentinha in json['quentinhas']) {
       listaQuentinhas.add(Quentinha.fromJson(quentinha));
     }
 
