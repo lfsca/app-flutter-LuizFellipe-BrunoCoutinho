@@ -65,7 +65,7 @@
     {
         "id": 2,
         "nomeBarraca": "Barraca do Amarelinho",
-        "descricao": "Yakisobas e Salgadinhos",
+        "descricao": "Uma das barraquinhas mais tradicionais da PUC-Rio, aberta todos os dias de 10:00 as 16:00. Aqui voce encontra os melhores Yakisobas do bairro, venha expermientar!",
         "imagemBarraca": "assets/img/amarelinho.jpeg",
         "avaliacoes": [
             {

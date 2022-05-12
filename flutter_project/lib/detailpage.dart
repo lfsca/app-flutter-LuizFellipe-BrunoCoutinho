@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/barraca.dart';
 import 'package:flutter_project/style.dart';
+import 'package:flutter_project/palette.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -10,52 +11,80 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final barraca = ModalRoute.of(context)!.settings.arguments as Barraca;
-    Widget _getContent() {
-      return Container(
-          color: Color.fromARGB(218, 250, 227, 227),
-          child: Center(
-            child: Column(children: [
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              Text('Descricao:', style: Style.headerTextStyle),
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              Text('${barraca.descricao}', style: Style.commonTextStyle),
-              Container(
-                  margin: new EdgeInsets.symmetric(vertical: 8.0),
-                  height: 2.0,
-                  width: 18.0),
-              Center(child: Text('Cardapio:', style: Style.headerTextStyle)),
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              //Text('${barraca.cardapio}', style: Style.commonTextStyle),
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              if (barraca.imagemBarraca != "IMAGEM")
-                (Image.asset(
-                  barraca.imagemBarraca,
-                  width: 250.0,
-                  height: 250.0,
-                )),
-            ]),
-          ));
-    }
-
-    // Container _getToolbar(BuildContext context) {
-    //   return Container(
-    //     margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-    //     child: BackButton(
-    //       color: Colors.blue,
-    //     ),
-    //   );
-    // }
-
     return Scaffold(
         appBar: AppBar(title: Text(barraca.nomeBarraca)),
         body: Container(
-            color: Color(0xFF736AB7),
+            color: Color.fromARGB(218, 250, 227, 227),
             constraints: BoxConstraints.expand(),
-            child: Stack(
-              children: <Widget>[
-                _getContent(),
-                // _getToolbar(context),
-              ],
-            )));
+            child: Center(
+                child: Column(children: <Widget>[
+              const SizedBox(
+                height: 30,
+              ),
+              if (barraca.imagemBarraca != "IMAGEM")
+                GestureDetector(
+                    onDoubleTap: () {
+                      print("OLAAAA");
+                      ImageDialog(barraca.imagemBarraca);
+                    },
+                    child: (Image.asset(
+                      barraca.imagemBarraca,
+                      width: 250.0,
+                      height: 250.0,
+                    ))),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                  margin: EdgeInsets.all(20), child: Text(barraca.descricao)),
+              Expanded(
+                  child: ListView.builder(
+                      itemCount: barraca.quentinhas.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.all(20),
+                          height: 100,
+                          width: double.infinity,
+                          child: Card(
+                              color: createMaterialColor(
+                                  Color.fromARGB(255, 253, 202, 168)),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    width: 1,
+                                  )),
+                              child: SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: Stack(children: [
+                                    Container(
+                                        child: Center(
+                                      child: Text(
+                                          barraca.quentinhas[index].nome,
+                                          style: Style.headerTextStyle),
+                                    )),
+                                  ]))),
+                        );
+                      }))
+            ]))));
+  }
+}
+
+class ImageDialog extends StatelessWidget {
+  final String imagemBarraca;
+  ImageDialog(this.imagemBarraca);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: ExactAssetImage(imagemBarraca), fit: BoxFit.cover)),
+      ),
+    );
   }
 }
