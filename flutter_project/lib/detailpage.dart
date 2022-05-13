@@ -4,6 +4,7 @@ import 'package:flutter_project/quentinha.dart';
 import 'package:flutter_project/reviewpage.dart';
 import 'package:flutter_project/style.dart';
 import 'package:flutter_project/palette.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -52,6 +53,46 @@ class WidgetResumoBarraca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(10),
+        child: Text(barraca.nomeBarraca,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+      ),
+      Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(barraca.descricao, style: const TextStyle(fontSize: 16))),
+      GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, ReviewPage.routeName,
+                arguments: barraca);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RatingBar(
+                initialRating: barraca.calculaMediaAvaliacoes(),
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 24,
+                ratingWidget: RatingWidget(
+                  empty: const Icon(Icons.star_outline),
+                  half: const Icon(Icons.star_half),
+                  full: const Icon(Icons.star),
+                ),
+                onRatingUpdate: (value) {},
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child:
+                    Text(barraca.avaliacoes.length.toString() + " Avaliações"),
+              ),
+              const Icon(Icons.arrow_right)
+            ],
+          ))
+    ]);
     return GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, ReviewPage.routeName,
