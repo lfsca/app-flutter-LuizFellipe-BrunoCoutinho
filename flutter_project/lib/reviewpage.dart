@@ -23,7 +23,8 @@ class ReviewPage extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 20),
               resumoAvaliacoes(barraca),
-              listaAvaliacoes(barraca),
+              for (var avaliacao in barraca.avaliacoes)
+                containerAvaliacao(avaliacao)
             ],
           )),
     );
@@ -31,7 +32,6 @@ class ReviewPage extends StatelessWidget {
 
   Column resumoAvaliacoes(Barraca barraca) {
     return Column(
-      //TODO deixar de ser hardcoded
       children: [
         Container(
             padding: const EdgeInsets.only(bottom: 4),
@@ -62,22 +62,13 @@ class ReviewPage extends StatelessWidget {
     );
   }
 
-  Column listaAvaliacoes(Barraca barraca) {
-    return Column(
-      children: [
-        for (var avaliacao in barraca.avaliacoes) containerAvaliacao(avaliacao)
-      ],
-    );
-  }
-
   Container containerAvaliacao(Avaliacao avaliacao) {
     return Container(
-        margin: EdgeInsets.all(10),
-        height: 100,
+        margin: const EdgeInsets.all(10),
         width: double.infinity,
-        constraints: BoxConstraints.expand(),
         child: Card(
-            color: createMaterialColor(Color.fromARGB(255, 253, 202, 168)),
+            color:
+                createMaterialColor(const Color.fromARGB(255, 253, 202, 168)),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: BorderSide(
