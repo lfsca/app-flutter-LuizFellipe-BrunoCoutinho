@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             // Notice that the counter didn't reset back to zero; the application
             // is not restarted.
             primarySwatch:
-                createMaterialColor(Color.fromARGB(255, 253, 202, 168)),
+                createMaterialColor(Color.fromARGB(222, 250, 250, 250)),
             textTheme:
                 const TextTheme(headline1: TextStyle(fontFamily: 'Poppins'))),
         home: HomePage(barracas: fetchBarracas()),

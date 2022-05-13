@@ -17,7 +17,7 @@ class ReviewPage extends StatelessWidget {
         title: Text("Avaliações ${barraca.nomeBarraca}"),
       ),
       body: Container(
-          color: Color.fromARGB(218, 250, 227, 227),
+          color: Color.fromARGB(218, 160, 209, 219),
           constraints: BoxConstraints.expand(),
           child: ListView(
             children: <Widget>[
@@ -49,9 +49,12 @@ class ReviewPage extends StatelessWidget {
                   itemCount: 5,
                   itemSize: 24,
                   ratingWidget: RatingWidget(
-                    empty: const Icon(Icons.star_outline),
-                    half: const Icon(Icons.star_half),
-                    full: const Icon(Icons.star),
+                    empty: const Icon(Icons.star_outline,
+                        color: Color.fromARGB(255, 255, 230, 0)),
+                    half: const Icon(Icons.star_half,
+                        color: Color.fromARGB(255, 255, 230, 0)),
+                    full: const Icon(Icons.star,
+                        color: Color.fromARGB(255, 255, 230, 0)),
                   ),
                   onRatingUpdate: (value) {},
                 ),
@@ -68,8 +71,7 @@ class ReviewPage extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         width: double.infinity,
         child: Card(
-            color:
-                createMaterialColor(const Color.fromARGB(255, 253, 202, 168)),
+            color: createMaterialColor(Color.fromARGB(222, 250, 250, 250)),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: BorderSide(
@@ -99,9 +101,12 @@ class ReviewPage extends StatelessWidget {
                           itemCount: 5,
                           itemSize: 24,
                           ratingWidget: RatingWidget(
-                            empty: const Icon(Icons.star_outline),
-                            half: const Icon(Icons.star_half),
-                            full: const Icon(Icons.star),
+                            empty: const Icon(Icons.star_outline,
+                                color: Color.fromARGB(255, 255, 230, 0)),
+                            half: const Icon(Icons.star_half,
+                                color: Color.fromARGB(255, 255, 230, 0)),
+                            full: const Icon(Icons.star,
+                                color: Color.fromARGB(255, 255, 230, 0)),
                           ),
                           onRatingUpdate: (value) {},
                         )),

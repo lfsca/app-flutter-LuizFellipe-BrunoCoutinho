@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('Hora do Rango PUC-Rio')),
         body: Container(
-            color: Color.fromARGB(218, 250, 227, 227),
+            color: Color.fromARGB(218, 160, 209, 219),
             child: Center(
                 child: Column(children: <Widget>[
               const SizedBox(
@@ -59,7 +59,7 @@ class BarracaListWidget extends StatelessWidget {
               },
               child: Card(
                   color:
-                      createMaterialColor(Color.fromARGB(255, 253, 202, 168)),
+                      createMaterialColor(Color.fromARGB(222, 250, 250, 250)),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: BorderSide(
@@ -86,21 +86,6 @@ class BarracaListWidget extends StatelessWidget {
         });
   }
 }
-// class ImageDialog extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Dialog(
-//       child: Container(
-//         width: 200,
-//         height: 200,
-//         decoration: BoxDecoration(
-//             image: DecorationImage(
-//                 image: ExactAssetImage("assets/img/estrela.png"),
-//                 fit: BoxFit.cover)),
-//       ),
-//     );
-//   }
-// }
 
 class Estrela extends StatefulWidget {
   const Estrela({Key? key}) : super(key: key);
@@ -120,9 +105,10 @@ class _EstrelaState extends State<Estrela> {
         padding: const EdgeInsets.all(0),
         alignment: Alignment.centerRight,
         icon: (_isFavorited
-            ? const Icon(Icons.star)
-            : const Icon(Icons.star_border)),
-        color: Color.fromARGB(255, 255, 230, 0),
+            ? const Icon(Icons.thumb_up,
+                color: Color.fromARGB(218, 153, 219, 232))
+            : const Icon(Icons.thumb_up_off_alt,
+                color: Color.fromARGB(218, 153, 219, 232))),
         onPressed: () {},
       ),
     ));
