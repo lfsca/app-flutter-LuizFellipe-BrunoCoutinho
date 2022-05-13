@@ -74,6 +74,7 @@ class WidgetResumoBarraca extends StatelessWidget {
               RatingBar(
                 initialRating: barraca.calculaMediaAvaliacoes(),
                 direction: Axis.horizontal,
+                ignoreGestures: true,
                 allowHalfRating: true,
                 itemCount: 5,
                 itemSize: 24,

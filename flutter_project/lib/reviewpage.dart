@@ -45,6 +45,7 @@ class ReviewPage extends StatelessWidget {
                   initialRating: barraca.calculaMediaAvaliacoes(),
                   direction: Axis.horizontal,
                   allowHalfRating: true,
+                  ignoreGestures: true,
                   itemCount: 5,
                   itemSize: 24,
                   ratingWidget: RatingWidget(
@@ -94,6 +95,7 @@ class ReviewPage extends StatelessWidget {
                           initialRating: avaliacao.nota.toDouble(),
                           direction: Axis.horizontal,
                           allowHalfRating: true,
+                          ignoreGestures: true,
                           itemCount: 5,
                           itemSize: 24,
                           ratingWidget: RatingWidget(
