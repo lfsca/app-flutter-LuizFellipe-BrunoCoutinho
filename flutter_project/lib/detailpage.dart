@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/barraca.dart';
+import 'package:flutter_project/reviewpage.dart';
 import 'package:flutter_project/style.dart';
 import 'package:flutter_project/palette.dart';
 
@@ -24,7 +25,6 @@ class DetailPage extends StatelessWidget {
               if (barraca.imagemBarraca != "IMAGEM")
                 GestureDetector(
                     onDoubleTap: () {
-                      print("OLAAAA");
                       ImageDialog(barraca.imagemBarraca);
                     },
                     child: (Image.asset(
@@ -54,17 +54,23 @@ class DetailPage extends StatelessWidget {
                                     color: Colors.grey.withOpacity(0.2),
                                     width: 1,
                                   )),
-                              child: SizedBox(
-                                  width: 100,
-                                  height: 100,
-                                  child: Stack(children: [
-                                    Container(
-                                        child: Center(
-                                      child: Text(
-                                          barraca.quentinhas[index].nome,
-                                          style: Style.headerTextStyle),
-                                    )),
-                                  ]))),
+                              child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, ReviewPage.routeName,
+                                        arguments: barraca);
+                                  },
+                                  child: SizedBox(
+                                      width: 100,
+                                      height: 100,
+                                      child: Stack(children: [
+                                        Container(
+                                            child: Center(
+                                          child: Text(
+                                              barraca.quentinhas[index].nome,
+                                              style: Style.headerTextStyle),
+                                        )),
+                                      ])))),
                         );
                       }))
             ]))));

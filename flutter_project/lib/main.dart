@@ -3,6 +3,7 @@ import 'package:flutter_project/barraca.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/palette.dart';
+import 'package:flutter_project/reviewpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         home: HomePage(barracas: fetchBarracas()),
         routes: <String, WidgetBuilder>{
           DetailPage.routeName: (context) => const DetailPage(),
+          ReviewPage.routeName: (context) => const ReviewPage(),
         });
   }
 }

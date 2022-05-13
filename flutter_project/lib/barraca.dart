@@ -39,6 +39,15 @@ class Barraca {
         avaliacoes: listaAvaliacoes,
         quentinhas: listaQuentinhas);
   }
+
+  double calculaMediaAvaliacoes() {
+    double media = 0;
+    for (var avaliacao in avaliacoes) {
+      media += avaliacao.nota;
+    }
+    media = media / avaliacoes.length;
+    return media;
+  }
 }
 
 Future<List<Barraca>> fetchBarracas() async {
@@ -48,7 +57,6 @@ Future<List<Barraca>> fetchBarracas() async {
   final decodedResponse = await json.decode(response);
 
   for (var barraca in decodedResponse) {
-    print('Ó A BARRACA: $barraca');
     list.add(Barraca.fromJson(barraca));
   }
   return list;

@@ -27,13 +27,10 @@ class HomePage extends StatelessWidget {
                       future: barracas,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          print('\n\nTEM DATA $snapshot.data');
                           return BarracaListWidget(barracas: snapshot.data);
                         } else if (snapshot.hasError) {
-                          print('\n\nTEM ERRO $snapshot.data');
                           return Text("${snapshot.error}");
                         } else {
-                          print('\n\nTEM NADA $snapshot.data');
                           return const CircularProgressIndicator();
                         }
                       })),
