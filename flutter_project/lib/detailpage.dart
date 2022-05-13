@@ -4,6 +4,7 @@ import 'package:flutter_project/quentinha.dart';
 import 'package:flutter_project/reviewpage.dart';
 import 'package:flutter_project/style.dart';
 import 'package:flutter_project/palette.dart';
+import 'package:flutter_project/tamanho_quentinha.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPage extends StatelessWidget {
@@ -94,13 +95,6 @@ class WidgetResumoBarraca extends StatelessWidget {
             ],
           ))
     ]);
-    return GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, ReviewPage.routeName,
-              arguments: barraca);
-        },
-        child: Container(
-            margin: EdgeInsets.all(20), child: Text(barraca.descricao)));
   }
 }
 
@@ -115,11 +109,10 @@ class WidgetQuentinha extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
-      height: 100,
+      margin: const EdgeInsets.all(20),
       width: double.infinity,
       child: Card(
-          color: createMaterialColor(Color.fromARGB(255, 253, 202, 168)),
+          color: createMaterialColor(const Color.fromARGB(255, 253, 202, 168)),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
@@ -128,13 +121,39 @@ class WidgetQuentinha extends StatelessWidget {
               )),
           child: SizedBox(
               width: 100,
-              height: 100,
-              child: Stack(children: [
-                Container(
-                    child: Center(
-                  child: Text(quentinha.nome, style: Style.headerTextStyle),
-                )),
-              ]))),
+              child: Column(
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(quentinha.nome,
+                          style: const TextStyle(fontSize: 24))),
+                  Text(quentinha.descricao),
+                  const Divider(color: Colors.black),
+                  for (var tamanho in quentinha.tamanhos)
+                    WidgetTamanhoQuentinha(tamanho: tamanho)
+                ],
+              ))),
+    );
+  }
+}
+
+class WidgetTamanhoQuentinha extends StatelessWidget {
+  const WidgetTamanhoQuentinha({
+    Key? key,
+    required this.tamanho,
+  }) : super(key: key);
+
+  final TamanhoQuentinha tamanho;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(tamanho.tamanho),
+        Text("R\$ " + tamanho.preco),
+        Text(tamanho.quantidade.toString() + " quentinhas")
+      ],
     );
   }
 }
