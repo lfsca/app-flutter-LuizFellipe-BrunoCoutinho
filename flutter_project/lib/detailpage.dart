@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/barraca.dart';
 import 'package:flutter_project/quentinha.dart';
 import 'package:flutter_project/reviewpage.dart';
-import 'package:flutter_project/style.dart';
 import 'package:flutter_project/palette.dart';
 import 'package:flutter_project/tamanho_quentinha.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -18,7 +17,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text(barraca.nomeBarraca)),
         body: Container(
-            color: Color.fromARGB(218, 160, 209, 219),
+            color: const Color.fromARGB(218, 160, 209, 219),
             constraints: const BoxConstraints.expand(),
             child: ListView(
               children: <Widget>[
@@ -90,7 +89,7 @@ class WidgetResumoBarraca extends StatelessWidget {
                 onRatingUpdate: (value) {},
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10),
                 child:
                     Text(barraca.avaliacoes.length.toString() + " Avaliações"),
               ),

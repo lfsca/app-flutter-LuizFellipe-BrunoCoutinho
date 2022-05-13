@@ -9,14 +9,14 @@ import 'package:flutter_project/palette.dart';
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;
 
-  HomePage({Key? key, required this.barracas}) : super(key: key);
+  const HomePage({Key? key, required this.barracas}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Hora do Rango PUC-Rio')),
         body: Container(
-            color: Color.fromARGB(218, 160, 209, 219),
+            color: const Color.fromARGB(218, 160, 209, 219),
             child: Center(
                 child: Column(children: <Widget>[
               const SizedBox(
@@ -49,7 +49,7 @@ class BarracaListWidget extends StatelessWidget {
         itemCount: barracas?.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             height: 100,
             width: double.infinity,
             child: GestureDetector(
@@ -58,8 +58,8 @@ class BarracaListWidget extends StatelessWidget {
                     arguments: barracas![index]);
               },
               child: Card(
-                  color:
-                      createMaterialColor(Color.fromARGB(222, 250, 250, 250)),
+                  color: createMaterialColor(
+                      const Color.fromARGB(222, 250, 250, 250)),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: BorderSide(
@@ -71,15 +71,13 @@ class BarracaListWidget extends StatelessWidget {
                       height: 100,
                       child: Stack(children: [
                         Container(
-                            padding: EdgeInsets.only(right: 16.0),
-                            child: Align(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: const Align(
                                 alignment: Alignment.topRight,
-                                child: const Estrela())),
+                                child: Estrela())),
                         Center(
-                            child: Container(
-                          child: Text(barracas![index].nomeBarraca,
-                              style: Style.headerTextStyle),
-                        ))
+                            child: Text(barracas![index].nomeBarraca,
+                                style: Style.headerTextStyle))
                       ]))),
             ),
           );
@@ -98,8 +96,7 @@ class _EstrelaState extends State<Estrela> {
   bool _isFavorited = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: GestureDetector(
+    return GestureDetector(
       onDoubleTap: _toggleFavorite,
       child: IconButton(
         padding: const EdgeInsets.all(0),
@@ -111,7 +108,7 @@ class _EstrelaState extends State<Estrela> {
                 color: Color.fromARGB(218, 153, 219, 232))),
         onPressed: () {},
       ),
-    ));
+    );
   }
 
   void _toggleFavorite() {

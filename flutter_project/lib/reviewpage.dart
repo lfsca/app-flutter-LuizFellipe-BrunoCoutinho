@@ -17,8 +17,8 @@ class ReviewPage extends StatelessWidget {
         title: Text("Avaliações ${barraca.nomeBarraca}"),
       ),
       body: Container(
-          color: Color.fromARGB(218, 160, 209, 219),
-          constraints: BoxConstraints.expand(),
+          color: const Color.fromARGB(218, 160, 209, 219),
+          constraints: const BoxConstraints.expand(),
           child: ListView(
             children: <Widget>[
               const SizedBox(height: 20),
@@ -36,7 +36,8 @@ class ReviewPage extends StatelessWidget {
         Container(
             padding: const EdgeInsets.only(bottom: 4),
             child: Text(barraca.calculaMediaAvaliacoes().toStringAsFixed(1),
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold))),
+                style: const TextStyle(
+                    fontSize: 40, fontWeight: FontWeight.bold))),
         Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
@@ -71,7 +72,8 @@ class ReviewPage extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         width: double.infinity,
         child: Card(
-            color: createMaterialColor(Color.fromARGB(222, 250, 250, 250)),
+            color:
+                createMaterialColor(const Color.fromARGB(222, 250, 250, 250)),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: BorderSide(
@@ -81,18 +83,19 @@ class ReviewPage extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     child: Row(
                       children: [
-                        Icon(Icons.person),
-                        Text(avaliacao.autor, style: TextStyle(fontSize: 16)),
+                        const Icon(Icons.person),
+                        Text(avaliacao.autor,
+                            style: const TextStyle(fontSize: 16)),
                       ],
                       mainAxisAlignment: MainAxisAlignment.start,
                     )),
                 Row(
                   children: [
                     Padding(
-                        padding: EdgeInsets.only(left: 6),
+                        padding: const EdgeInsets.only(left: 6),
                         child: RatingBar(
                           initialRating: avaliacao.nota.toDouble(),
                           direction: Axis.horizontal,
@@ -111,12 +114,12 @@ class ReviewPage extends StatelessWidget {
                           onRatingUpdate: (value) {},
                         )),
                     Padding(
-                        padding: EdgeInsets.only(left: 6),
+                        padding: const EdgeInsets.only(left: 6),
                         child: Text(avaliacao.data)),
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Text(avaliacao.comentario, softWrap: true),
                 )
               ],

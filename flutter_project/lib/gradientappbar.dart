@@ -13,7 +13,7 @@ class GradientAppBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: statusBarHeight),
       height: barHeight + statusBarHeight,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
             Color(0xFF3366FF),
@@ -28,7 +28,7 @@ class GradientAppBar extends StatelessWidget {
       child: Center(
         child: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
