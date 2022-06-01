@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "909429677253",
+    "project_id": "hora-do-rango",
+    "storage_bucket": "hora-do-rango.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909429677253:android:d9d5163523d84492fd64ac",
+        "android_client_info": {
+          "package_name": "com.example.flutter_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909429677253-ibpe5giph94gjbu8k108abgaputdb7b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrwp0L5v-sYwU7hqjCiaFK37U0cSIpXaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909429677253-ibpe5giph94gjbu8k108abgaputdb7b8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
