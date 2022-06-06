@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/gradientappbar.dart';
 import 'package:flutter_project/detailpage.dart';
+import 'package:flutter_project/cadastro.dart';
 import 'package:flutter_project/barraca.dart';
 import 'dart:async';
 import 'package:flutter_project/style.dart';
@@ -14,7 +15,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Hora do Rango PUC-Rio')),
+        appBar: AppBar(
+          title: const Text('Hora do Rango PUC-Rio'),
+          leading: GestureDetector(
+              onTap: () {
+                // Navigator.pushNamed(context, RegisterPage.routeName,
+                //     arguments: ["Luiz", "emailteste", "batatinha", "false"]);
+              },
+              child: Icon(
+                Icons.menu,
+              )),
+        ),
         body: Container(
             color: const Color.fromARGB(218, 160, 209, 219),
             child: Center(
