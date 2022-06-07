@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           DetailPage.routeName: (context) => const DetailPage(),
           ReviewPage.routeName: (context) => const ReviewPage(),
-          // RegisterPage.routeName: (context) => const RegisterPage(),
+          RegisterForm.routeName: (context) => const RegisterForm(),
         });
   }
 }

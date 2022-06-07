@@ -19,8 +19,7 @@ class HomePage extends StatelessWidget {
           title: const Text('Hora do Rango PUC-Rio'),
           leading: GestureDetector(
               onTap: () {
-                // Navigator.pushNamed(context, RegisterPage.routeName,
-                //     arguments: ["Luiz", "emailteste", "batatinha", "false"]);
+                Navigator.pushNamed(context, RegisterForm.routeName);
               },
               child: Icon(
                 Icons.menu,
