@@ -16,6 +16,7 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool isChecked = false;
   final registernomeController = TextEditingController();
   final registersenhaController = TextEditingController();
   final registeremailController = TextEditingController();
@@ -85,7 +86,15 @@ class _RegisterFormState extends State<RegisterForm> {
                       return null;
                     },
                   ),
-                  CheckboxWidget(),
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  }),
                   Text("E vendedor?"),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -96,7 +105,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         nome = registernomeController.text;
                         email = registeremailController.text;
                         senha = registersenhaController.text;
-                        vendedor = false;
+                        vendedor = isChecked;
                         if (_formKey.currentState!.validate()) {
                           addUser(usuario, nome, email, senha, vendedor);
                         }
@@ -124,41 +133,16 @@ class _RegisterFormState extends State<RegisterForm> {
         .then((value) => print("Usuario Criado!"))
         .catchError((error) => print("Falha ao criar usuario: $error"));
   }
-}
 
-class CheckboxWidget extends StatefulWidget {
-  const CheckboxWidget({Key? key}) : super(key: key);
-
-  @override
-  State<CheckboxWidget> createState() => _CheckboxWidgetState();
-}
-
-class _CheckboxWidgetState extends State<CheckboxWidget> {
-  bool isChecked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.white;
-      }
-      return Colors.black;
+  Color getColor(Set<MaterialState> states){
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.white;
     }
-
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
-    );
+    return Colors.black;
   }
 }
