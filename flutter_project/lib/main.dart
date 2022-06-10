@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/barraca.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
+import 'package:flutter_project/login.dart';
 import 'package:flutter_project/palette.dart';
 import 'package:flutter_project/reviewpage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        navigatorKey: navigatorKey,
         title: 'Barraquinhas PUC',
         theme: ThemeData(
             // This is the theme of your application.
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
           DetailPage.routeName: (context) => const DetailPage(),
           ReviewPage.routeName: (context) => const ReviewPage(),
           RegisterForm.routeName: (context) => const RegisterForm(),
+          LoginPage.routeName: (context) => LoginPage(),
         });
   }
 }

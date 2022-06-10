@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/gradientappbar.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/cadastro.dart';
 import 'package:flutter_project/barraca.dart';
+import 'package:flutter_project/login.dart';
 import 'dart:async';
 import 'package:flutter_project/style.dart';
 import 'package:flutter_project/palette.dart';
@@ -14,17 +16,50 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Hora do Rango PUC-Rio'),
-          leading: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, RegisterForm.routeName);
-              },
-              child: Icon(
-                Icons.menu,
+        drawer: Drawer(
+            child: ListView(children: [
+          DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(218, 160, 209, 219),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Logado como:", style: TextStyle(fontSize: 16)),
+                  SizedBox(height: 8),
+                  Text("SEU EMAIL AQUI",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+                ],
               )),
-        ),
+          const Divider(color: Colors.black),
+          ListTile(
+              title: const Text("LOGIN"),
+              onTap: () {
+                Navigator.pushNamed(context, LoginPage.routeName);
+              }),
+          const Divider(color: Colors.black),
+          ListTile(
+              title: const Text("SAIR"),
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+              }),
+          const Divider(color: Colors.black),
+          ListTile(title: const Text("CADASTRO"), onTap: () {}),
+          const Divider(color: Colors.black),
+          ListTile(title: const Text("MINHA BARRAQUINHA"), onTap: () {}),
+          const Divider(color: Colors.black),
+        ])),
+        appBar: AppBar(
+            title: const Text('Hora do Rango PUC-Rio'),
+            leading: Builder(
+                builder: (context) => IconButton(
+                      icon: Icon(Icons.menu),
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    ))),
         body: Container(
             color: const Color.fromARGB(218, 160, 209, 219),
             child: Center(
