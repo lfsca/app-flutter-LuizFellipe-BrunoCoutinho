@@ -26,39 +26,58 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-      padding: EdgeInsets.all(16),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        SizedBox(height: 40),
-        Container(
-          child: TextField(
-            controller: emailController,
-            cursorColor: Colors.black,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(labelText: 'Email'),
-          ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Login'),
         ),
-        SizedBox(height: 4),
-        TextField(
-          controller: passwordController,
-          cursorColor: Colors.black,
-          textInputAction: TextInputAction.next,
-          decoration: InputDecoration(labelText: 'Senha'),
-          obscureText: true,
-        ),
-        SizedBox(height: 20),
-        ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size.fromHeight(50),
-          ),
-          icon: Icon(Icons.lock_open, size: 32),
-          label: Text(
-            'Entrar',
-            style: TextStyle(fontSize: 24),
-          ),
-          onPressed: signIn,
-        ),
-      ]));
+        body: Container(
+            color: const Color.fromARGB(218, 160, 209, 219),
+            child: Container(
+              margin: EdgeInsets.all(16),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Card(
+                        color: Color.fromARGB(222, 250, 250, 250),
+                        child: Column(children: [
+                          Container(
+                            margin: EdgeInsets.all(16),
+                            child: TextField(
+                              controller: emailController,
+                              cursorColor: Colors.black,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(labelText: 'Email'),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Container(
+                            margin: EdgeInsets.all(16),
+                            child: TextField(
+                              controller: passwordController,
+                              cursorColor: Colors.black,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(labelText: 'Senha'),
+                              obscureText: true,
+                            ),
+                          ),
+                          SizedBox(height: 40),
+                        ])),
+                    SizedBox(height: 20),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size.fromHeight(50),
+                      ),
+                      icon: Icon(Icons.lock_open, size: 32),
+                      label: Text(
+                        'Entrar',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      onPressed: signIn,
+                    ),
+                  ]),
+            )));
+  }
 
   Future signIn() async {
     showDialog(

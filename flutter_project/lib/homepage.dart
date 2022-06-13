@@ -16,7 +16,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final user = FirebaseAuth.instance.currentUser!;
+    String user_email;
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      user_email = (user.email).toString();
+      ;
+    } else {
+      user_email = "DESLOGADO";
+    }
 
     return Scaffold(
         drawer: Drawer(
@@ -28,9 +35,9 @@ class HomePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Logado como:", style: TextStyle(fontSize: 16)),
+                  Text("Usuario:", style: TextStyle(fontSize: 16)),
                   SizedBox(height: 8),
-                  Text("SEU EMAIL AQUI",
+                  Text(user_email,
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
                 ],
@@ -48,7 +55,11 @@ class HomePage extends StatelessWidget {
                 FirebaseAuth.instance.signOut();
               }),
           const Divider(color: Colors.black),
-          ListTile(title: const Text("CADASTRO"), onTap: () {}),
+          ListTile(
+              title: const Text("CADASTRO"),
+              onTap: () {
+                Navigator.pushNamed(context, RegisterPage.routeName);
+              }),
           const Divider(color: Colors.black),
           ListTile(title: const Text("MINHA BARRAQUINHA"), onTap: () {}),
           const Divider(color: Colors.black),
