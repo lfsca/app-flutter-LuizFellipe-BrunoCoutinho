@@ -146,15 +146,14 @@ class _RegisterPageState extends State<RegisterPage> {
         password: senha.trim(),
       );
       final uid = FirebaseAuth.instance.currentUser?.uid;
-      addUser(uid, nome, email, senha, vendedor);
+      addUser(uid, nome, email, vendedor);
     } on FirebaseAuthException catch (e) {
       print(e);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
-  Future addUser(
-      uid, String nome, String email, String senha, bool vendedor) async {
+  Future addUser(uid, String nome, String email, bool vendedor) async {
     final usuario = FirebaseFirestore.instance.collection('usuario').doc(uid);
     // Call the user's CollectionReference to add a new user
 
@@ -162,7 +161,6 @@ class _RegisterPageState extends State<RegisterPage> {
       final json = {
         'nome': nome,
         'email': email,
-        'senha': senha,
         'vendedor': vendedor,
         'administrador': false,
       };
