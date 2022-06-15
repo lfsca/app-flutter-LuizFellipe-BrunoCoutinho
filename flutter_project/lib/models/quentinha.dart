@@ -1,4 +1,4 @@
-import 'package:flutter_project/tamanho_quentinha.dart';
+import 'package:flutter_project/models/tamanho_quentinha.dart';
 
 class Quentinha {
   final String nome;

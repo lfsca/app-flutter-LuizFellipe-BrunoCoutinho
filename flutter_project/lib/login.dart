@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/homepage.dart';
-import 'package:flutter_project/barraca.dart';
+import 'package:flutter_project/models/barraca.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 

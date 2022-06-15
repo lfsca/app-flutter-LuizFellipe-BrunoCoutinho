@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/avaliacao.dart';
-import 'package:flutter_project/palette.dart';
+import 'package:flutter_project/models/avaliacao.dart';
+import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:intl/intl.dart';
 
-import 'barraca.dart';
+import 'models/barraca.dart';
 
 class ReviewPage extends StatelessWidget {
   const ReviewPage({Key? key}) : super(key: key);
@@ -115,7 +116,8 @@ class ReviewPage extends StatelessWidget {
                         )),
                     Padding(
                         padding: const EdgeInsets.only(left: 6),
-                        child: Text(avaliacao.data)),
+                        child: Text(DateFormat('yyyy-MM-dd – kk:mm')
+                            .format(avaliacao.data))),
                   ],
                 ),
                 Padding(

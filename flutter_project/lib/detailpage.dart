@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/barraca.dart';
-import 'package:flutter_project/quentinha.dart';
+import 'package:flutter_project/models/barraca.dart';
+import 'package:flutter_project/models/quentinha.dart';
 import 'package:flutter_project/reviewpage.dart';
-import 'package:flutter_project/palette.dart';
-import 'package:flutter_project/tamanho_quentinha.dart';
+import 'package:flutter_project/style/palette.dart';
+import 'package:flutter_project/models/tamanho_quentinha.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailPage extends StatelessWidget {

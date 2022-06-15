@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/gradientappbar.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/cadastro.dart';
-import 'package:flutter_project/barraca.dart';
+import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/login.dart';
 import 'dart:async';
-import 'package:flutter_project/style.dart';
-import 'package:flutter_project/palette.dart';
+import 'package:flutter_project/style/style.dart';
+import 'package:flutter_project/style/palette.dart';
 
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;

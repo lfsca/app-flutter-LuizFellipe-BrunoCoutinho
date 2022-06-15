@@ -1,10 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_project/quentinha.dart';
-import 'package:flutter_project/avaliacao.dart';
+import 'package:flutter_project/models/quentinha.dart';
+import 'package:flutter_project/models/avaliacao.dart';
 import 'dart:convert';
 
 class Barraca {
-  final int id;
   final String nomeBarraca;
   final String descricao;
   final String imagemBarraca;
@@ -12,8 +12,7 @@ class Barraca {
   final List<Quentinha> quentinhas;
 
   Barraca(
-      {this.id = 0,
-      this.nomeBarraca = "a",
+      {this.nomeBarraca = "a",
       this.descricao = "a",
       this.imagemBarraca = "a",
       required this.avaliacoes,
@@ -32,7 +31,6 @@ class Barraca {
     }
 
     return Barraca(
-        id: json['id'],
         nomeBarraca: json['nomeBarraca'],
         descricao: json['descricao'],
         imagemBarraca: json['imagemBarraca'],
@@ -50,14 +48,38 @@ class Barraca {
   }
 }
 
+// Future<List<Barraca>> fetchBarracas() async {
+//   List<Barraca> list = [];
+//   final String response =
+//       await rootBundle.loadString('assets/json/barracas.json');
+//   final decodedResponse = await json.decode(response);
+
+//   for (var barraca in decodedResponse) {
+//     list.add(Barraca.fromJson(barraca));
+//   }
+//   return list;
+// }
+
 Future<List<Barraca>> fetchBarracas() async {
   List<Barraca> list = [];
-  final String response =
-      await rootBundle.loadString('assets/json/barracas.json');
-  final decodedResponse = await json.decode(response);
+  await FirebaseFirestore.instance
+      .collection('barraca')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      list.add(Barraca.fromJson(data));
+      print(doc["descricao"]);
+      print("oba");
+    }
+  });
+  //List<Barraca> list = [];
+  // final String response =
+  //     await rootBundle.loadString('assets/json/barracas.json');
+  // final decodedResponse = await json.decode(response);
 
-  for (var barraca in decodedResponse) {
-    list.add(Barraca.fromJson(barraca));
-  }
+  // for (var barraca in decodedResponse) {
+  //   list.add(Barraca.fromJson(barraca));
+  // }
   return list;
 }

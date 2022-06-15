@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/barraca.dart';
+import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/login.dart';
-import 'package:flutter_project/palette.dart';
+import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/reviewpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_project/cadastro.dart';
-import 'firebase_options.dart';
+import 'firebaseSettings/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
