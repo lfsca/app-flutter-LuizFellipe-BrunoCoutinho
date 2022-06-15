@@ -32,6 +32,24 @@ class Usuario {
     return 'Usuario {id: $id, nome: $nome, email: $email, vendedor: $vendedor, administrador: $administrador}';
   }
 
+  static Future addUser(uid, String nome, String email, bool vendedor) async {
+    final usuario = FirebaseFirestore.instance.collection('usuario').doc(uid);
+    // Call the user's CollectionReference to add a new user
+
+    try {
+      final json = {
+        'nome': nome,
+        'email': email,
+        'vendedor': vendedor,
+        'administrador': false,
+      };
+      await usuario.set(json);
+    } catch (error) {
+      print("Falha ao criar usuario: $error");
+    }
+    print("Usuario Criado!");
+  }
+
   static Usuario fromJson(Map<String, dynamic> json) => Usuario(
         id: json['id'],
         nome: json['nome'],

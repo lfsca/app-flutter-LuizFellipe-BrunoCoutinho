@@ -6,6 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_project/login.dart';
 
+import 'models/usuario.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -146,29 +148,11 @@ class _RegisterPageState extends State<RegisterPage> {
         password: senha.trim(),
       );
       final uid = FirebaseAuth.instance.currentUser?.uid;
-      addUser(uid, nome, email, vendedor);
+      Usuario.addUser(uid, nome, email, vendedor);
     } on FirebaseAuthException catch (e) {
       print(e);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  }
-
-  Future addUser(uid, String nome, String email, bool vendedor) async {
-    final usuario = FirebaseFirestore.instance.collection('usuario').doc(uid);
-    // Call the user's CollectionReference to add a new user
-
-    try {
-      final json = {
-        'nome': nome,
-        'email': email,
-        'vendedor': vendedor,
-        'administrador': false,
-      };
-      await usuario.set(json);
-    } catch (error) {
-      print("Falha ao criar usuario: $error");
-    }
-    print("Usuario Criado!");
   }
 
   Color getColor(Set<MaterialState> states) {
