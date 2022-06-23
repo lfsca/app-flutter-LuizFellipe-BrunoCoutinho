@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_project/models/quentinha.dart';
 import 'package:flutter_project/models/avaliacao.dart';
-import 'dart:convert';
 
 class Barraca {
   final String nomeBarraca;

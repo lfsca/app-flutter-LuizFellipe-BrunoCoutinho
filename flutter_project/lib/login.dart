@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_auth_email/main.dart';
 // import 'package:firebase_auth_email/utils/utils.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/models/barraca.dart';
@@ -9,6 +8,8 @@ import 'package:flutter_project/models/barraca.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 class LoginWidget extends StatefulWidget {
+  const LoginWidget({Key? key}) : super(key: key);
+
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
 }
@@ -34,42 +35,44 @@ class _LoginWidgetState extends State<LoginWidget> {
         body: Container(
             color: const Color.fromARGB(218, 160, 209, 219),
             child: Container(
-              margin: EdgeInsets.all(16),
+              margin: const EdgeInsets.all(16),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Card(
-                        color: Color.fromARGB(222, 250, 250, 250),
+                        color: const Color.fromARGB(222, 250, 250, 250),
                         child: Column(children: [
                           Container(
-                            margin: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16),
                             child: TextField(
                               controller: emailController,
                               cursorColor: Colors.black,
                               textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(labelText: 'Email'),
+                              decoration:
+                                  const InputDecoration(labelText: 'Email'),
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Container(
-                            margin: EdgeInsets.all(16),
+                            margin: const EdgeInsets.all(16),
                             child: TextField(
                               controller: passwordController,
                               cursorColor: Colors.black,
                               textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(labelText: 'Senha'),
+                              decoration:
+                                  const InputDecoration(labelText: 'Senha'),
                               obscureText: true,
                             ),
                           ),
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                         ])),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size.fromHeight(50),
+                        minimumSize: const Size.fromHeight(50),
                       ),
-                      icon: Icon(Icons.lock_open, size: 32),
-                      label: Text(
+                      icon: const Icon(Icons.lock_open, size: 32),
+                      label: const Text(
                         'Entrar',
                         style: TextStyle(fontSize: 24),
                       ),
@@ -83,7 +86,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => Center(child: CircularProgressIndicator()));
+        builder: (context) => const Center(child: CircularProgressIndicator()));
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -100,19 +103,21 @@ class _LoginWidgetState extends State<LoginWidget> {
 class LoginPage extends StatelessWidget {
   static const routeName = '/loginpage';
 
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
         body: StreamBuilder<User?>(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                return Center(child: Text('Deu algo errado!'));
+                return const Center(child: Text('Deu algo errado!'));
               } else if (snapshot.hasData) {
                 return HomePage(barracas: fetchBarracas());
               } else {
-                return LoginWidget();
+                return const LoginWidget();
               }
             }),
       );

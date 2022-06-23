@@ -162,7 +162,7 @@ class WidgetTamanhoQuentinha extends StatelessWidget {
 
 class ImageDialog extends StatelessWidget {
   final String imagemBarraca;
-  ImageDialog(this.imagemBarraca);
+  const ImageDialog(this.imagemBarraca, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

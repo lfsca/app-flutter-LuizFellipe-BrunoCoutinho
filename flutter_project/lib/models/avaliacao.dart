@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Avaliacao {
   final int nota;
   final String comentario;

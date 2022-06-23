@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Style {
-  static final baseTextStyle = TextStyle(fontFamily: 'Poppins');
+  static const baseTextStyle = TextStyle(fontFamily: 'Poppins');
   static final headerTextStyle = baseTextStyle.copyWith(
       color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w600);
   static final regularTextStyle = baseTextStyle.copyWith(

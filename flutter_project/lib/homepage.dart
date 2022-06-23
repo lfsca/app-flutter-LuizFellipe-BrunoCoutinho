@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/gradientappbar.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/cadastro.dart';
 import 'package:flutter_project/models/barraca.dart';
@@ -12,34 +11,33 @@ import 'package:flutter_project/style/palette.dart';
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;
 
-  HomePage({Key? key, required this.barracas}) : super(key: key);
+  const HomePage({Key? key, required this.barracas}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String user_email;
+    String userEmail;
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      user_email = (user.email).toString();
-      ;
+      userEmail = (user.email).toString();
     } else {
-      user_email = "DESLOGADO";
+      userEmail = "DESLOGADO";
     }
 
     return Scaffold(
         drawer: Drawer(
             child: ListView(children: [
           DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(218, 160, 209, 219),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Usuario:", style: TextStyle(fontSize: 16)),
-                  SizedBox(height: 8),
-                  Text(user_email,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+                  const Text("Usuario:", style: TextStyle(fontSize: 16)),
+                  const SizedBox(height: 8),
+                  Text(userEmail,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold))
                 ],
               )),
           const Divider(color: Colors.black),
@@ -68,7 +66,7 @@ class HomePage extends StatelessWidget {
             title: const Text('Hora do Rango PUC-Rio'),
             leading: Builder(
                 builder: (context) => IconButton(
-                      icon: Icon(Icons.menu),
+                      icon: const Icon(Icons.menu),
                       onPressed: () => Scaffold.of(context).openDrawer(),
                     ))),
         body: Container(
