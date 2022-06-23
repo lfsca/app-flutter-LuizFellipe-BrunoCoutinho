@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/addBarraca.dart';
 import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
           DetailPage.routeName: (context) => const DetailPage(),
           ReviewPage.routeName: (context) => const ReviewPage(),
           RegisterPage.routeName: (context) => const RegisterPage(),
-          LoginPage.routeName: (context) => LoginPage(),
+          LoginPage.routeName: (context) => const LoginPage(),
+          AddBarraca.routeName: (context) => const AddBarraca(),
         });
   }
 }
