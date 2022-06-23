@@ -37,22 +37,24 @@ class _RegisterPageState extends State<RegisterPage> {
         body: Container(
           color: const Color.fromARGB(218, 160, 209, 219),
           child: Container(
-            margin: const EdgeInsets.all(16),
-            constraints: const BoxConstraints.expand(),
-            child: SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  const SizedBox(height: 40),
-                  form(),
-                  const SizedBox(height: 20),
-                  submitButton(),
-                ])),
-          ),
+              margin: const EdgeInsets.all(16),
+              constraints: const BoxConstraints.expand(),
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                      const SizedBox(height: 40),
+                      formFields(),
+                      const SizedBox(height: 20),
+                      submitButton(),
+                    ])),
+              )),
         ));
   }
 
-  Card form() {
+  Card formFields() {
     return Card(
         color: const Color.fromARGB(222, 250, 250, 250),
         child: Column(children: [
@@ -147,14 +149,16 @@ class _RegisterPageState extends State<RegisterPage> {
         style: TextStyle(fontSize: 24),
       ),
       onPressed: () {
-        nome = registernomeController.text;
-        email = registeremailController.text;
-        senha = registersenhaController.text;
-        vendedor = isChecked;
-        try {
-          cadastro(nome, email, senha, vendedor);
-        } on FirebaseAuthException catch (e) {
-          print(e);
+        if (_formKey.currentState!.validate()) {
+          nome = registernomeController.text;
+          email = registeremailController.text;
+          senha = registersenhaController.text;
+          vendedor = isChecked;
+          try {
+            cadastro(nome, email, senha, vendedor);
+          } on FirebaseAuthException catch (e) {
+            print(e);
+          }
         }
       },
     );
