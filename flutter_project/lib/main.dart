@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           ReviewPage.routeName: (context) => const ReviewPage(),
           RegisterPage.routeName: (context) => const RegisterPage(),
           LoginPage.routeName: (context) => const LoginPage(),
-          AddBarraca.routeName: (context) => const AddBarraca(),
+          AddBarracaPage.routeName: (context) => const AddBarracaPage(),
         });
   }
 }

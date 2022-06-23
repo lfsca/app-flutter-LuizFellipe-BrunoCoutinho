@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/addBarraca.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/cadastro.dart';
 import 'package:flutter_project/models/barraca.dart';
@@ -88,6 +89,12 @@ class HomePage extends StatelessWidget {
           title: const Text("CADASTRO"),
           onTap: () {
             Navigator.pushNamed(context, RegisterPage.routeName);
+          }),
+      const Divider(color: Colors.black),
+      ListTile(
+          title: const Text("ADICIONAR BARRACA"),
+          onTap: () {
+            Navigator.pushNamed(context, AddBarracaPage.routeName);
           }),
       const Divider(color: Colors.black),
       ListTile(title: const Text("MINHA BARRAQUINHA"), onTap: () {}),
