@@ -24,44 +24,7 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
-        drawer: Drawer(
-            child: ListView(children: [
-          DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(218, 160, 209, 219),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Usuario:", style: TextStyle(fontSize: 16)),
-                  const SizedBox(height: 8),
-                  Text(userEmail,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold))
-                ],
-              )),
-          const Divider(color: Colors.black),
-          ListTile(
-              title: const Text("LOGIN"),
-              onTap: () {
-                Navigator.pushNamed(context, LoginPage.routeName);
-              }),
-          const Divider(color: Colors.black),
-          ListTile(
-              title: const Text("SAIR"),
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-              }),
-          const Divider(color: Colors.black),
-          ListTile(
-              title: const Text("CADASTRO"),
-              onTap: () {
-                Navigator.pushNamed(context, RegisterPage.routeName);
-              }),
-          const Divider(color: Colors.black),
-          ListTile(title: const Text("MINHA BARRAQUINHA"), onTap: () {}),
-          const Divider(color: Colors.black),
-        ])),
+        drawer: sideMenu(userEmail, context),
         appBar: AppBar(
             title: const Text('Hora do Rango PUC-Rio'),
             leading: Builder(
@@ -89,6 +52,47 @@ class HomePage extends StatelessWidget {
                         }
                       })),
             ]))));
+  }
+
+  Drawer sideMenu(String userEmail, BuildContext context) {
+    return Drawer(
+        child: ListView(children: [
+      DrawerHeader(
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(218, 160, 209, 219),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Usuario:", style: TextStyle(fontSize: 16)),
+              const SizedBox(height: 8),
+              Text(userEmail,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold))
+            ],
+          )),
+      const Divider(color: Colors.black),
+      ListTile(
+          title: const Text("LOGIN"),
+          onTap: () {
+            Navigator.pushNamed(context, LoginPage.routeName);
+          }),
+      const Divider(color: Colors.black),
+      ListTile(
+          title: const Text("SAIR"),
+          onTap: () {
+            FirebaseAuth.instance.signOut();
+          }),
+      const Divider(color: Colors.black),
+      ListTile(
+          title: const Text("CADASTRO"),
+          onTap: () {
+            Navigator.pushNamed(context, RegisterPage.routeName);
+          }),
+      const Divider(color: Colors.black),
+      ListTile(title: const Text("MINHA BARRAQUINHA"), onTap: () {}),
+      const Divider(color: Colors.black),
+    ]));
   }
 }
 
