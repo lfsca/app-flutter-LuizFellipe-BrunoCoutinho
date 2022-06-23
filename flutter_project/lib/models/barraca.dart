@@ -67,8 +67,6 @@ Future<List<Barraca>> fetchBarracas() async {
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
       list.add(Barraca.fromJson(data));
-      print(doc["descricao"]);
-      print("oba");
     }
   });
   //List<Barraca> list = [];
