@@ -3,18 +3,18 @@ import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Usuario {
-  final String id;
-  final String nome;
-  final String email;
-  final bool vendedor;
-  final bool administrador;
+  String? id;
+  String nome;
+  String? email;
+  bool? vendedor;
+  bool? administrador;
 
-  const Usuario({
-    required this.id,
-    required this.nome,
-    required this.email,
-    required this.vendedor,
-    required this.administrador,
+  Usuario({
+    this.id,
+    this.nome = "",
+    this.email,
+    this.vendedor = false,
+    this.administrador = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -50,12 +50,22 @@ class Usuario {
     print("Usuario Criado!");
   }
 
+  factory Usuario.fromFirestore(Map<String, dynamic>? data) {
+    return Usuario(
+      id: data?['documentID'],
+      nome: data?['nome'],
+      email: data?['email'],
+      vendedor: data?['vendedor'],
+      administrador: data?['administrador'],
+    );
+  }
+
   static Usuario fromJson(Map<String, dynamic> json) => Usuario(
-        id: json['id'],
+        id: "1", //json['documentID'],
         nome: json['nome'],
         email: json['email'],
-        vendedor: json['vendedor'],
-        administrador: json['administrador'],
+        //vendedor: json['vendedor'],
+        //administrador: json['administrador'],
       );
 }
 
@@ -66,6 +76,20 @@ Future<Usuario?> readUser(uid) async {
   if (snapshot.exists) {
     return Usuario.fromJson(snapshot.data()!);
   }
+}
+
+Future<List<Usuario>> fetchVendedores() async {
+  List<Usuario> list = [];
+  await FirebaseFirestore.instance
+      .collection('usuario')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      if (data['vendedor'] == true) list.add(Usuario.fromFirestore(data));
+    }
+  });
+  return list;
 }
 
 Future<void> insertUsuario(Usuario usuario) async {

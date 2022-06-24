@@ -4,6 +4,7 @@ import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/login.dart';
+import 'package:flutter_project/models/usuario.dart';
 import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/reviewpage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
           ReviewPage.routeName: (context) => const ReviewPage(),
           RegisterPage.routeName: (context) => const RegisterPage(),
           LoginPage.routeName: (context) => const LoginPage(),
-          AddBarracaPage.routeName: (context) => const AddBarracaPage(),
+          AddBarracaPage.routeName: (context) => AddBarracaPage(),
         });
   }
 }
