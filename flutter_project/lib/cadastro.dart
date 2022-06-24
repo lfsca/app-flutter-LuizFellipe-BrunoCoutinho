@@ -90,6 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
         controller: registersenhaController,
         obscureText: true,
         decoration: const InputDecoration(
+          labelText: 'Senha',
           hintText: 'Insira uma senha',
         ),
         validator: (String? value) {
@@ -108,6 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: TextFormField(
         controller: registeremailController,
         decoration: const InputDecoration(
+          labelText: 'Email',
           hintText: 'Insira seu email',
         ),
         validator: (String? value) {
@@ -126,6 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: TextFormField(
         controller: registernomeController,
         decoration: const InputDecoration(
+          labelText: 'Nome',
           hintText: 'Insira seu nome completo',
         ),
         validator: (String? value) {
