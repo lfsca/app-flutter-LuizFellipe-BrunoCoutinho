@@ -50,9 +50,9 @@ class Usuario {
     print("Usuario Criado!");
   }
 
-  factory Usuario.fromFirestore(Map<String, dynamic>? data) {
+  factory Usuario.fromFirestore(Map<String, dynamic>? data, String uid) {
     return Usuario(
-      id: data?['documentID'],
+      id: uid,
       nome: data?['nome'],
       email: data?['email'],
       vendedor: data?['vendedor'],
@@ -86,7 +86,8 @@ Future<List<Usuario>> fetchVendedores() async {
       .then((QuerySnapshot querySnapshot) {
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      if (data['vendedor'] == true) list.add(Usuario.fromFirestore(data));
+      if (data['vendedor'] == true)
+        list.add(Usuario.fromFirestore(data, doc.id));
     }
   });
   return list;

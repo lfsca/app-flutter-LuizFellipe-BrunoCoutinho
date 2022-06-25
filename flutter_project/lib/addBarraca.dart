@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'models/barraca.dart';
@@ -82,14 +83,8 @@ class _AddBarracaState extends State<AddBarracaPage> {
                       labelText: 'Dono da barraca',
                     ),
                     onChanged: (dynamic vendedorValue) {
-                      final snackBar = SnackBar(
-                        content: Text(
-                          'Dono escolhido: ${vendedorValue.nome}',
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       setState(() {
-                        vendedor = vendedorValue;
+                        vendedorField = vendedorValue;
                       });
                     });
               } else if (snapshot.hasError) {
@@ -133,14 +128,27 @@ class _AddBarracaState extends State<AddBarracaPage> {
         if (_formKey.currentState!.validate()) {
           nome = nomeController.text;
           vendedor = vendedorField;
-          // try {
-          //   cadastro(nome, email, senha, vendedor);
-          // } on FirebaseAuthException catch (e) {
-          //   print(e);
-          // }
-          print("adicionou barraca");
+          addToDb(vendedor, nome);
         }
       },
     );
+  }
+
+  Future<void> addToDb(Usuario dono, String nome) async {
+    final data = {
+      "nomeBarraca": nome,
+      "dono": {"id": dono.id, "nome": dono.nome}
+    };
+    await FirebaseFirestore.instance
+        .collection('barraca')
+        .add(data)
+        .then((documentSnapshot) {
+      final snackBar = SnackBar(
+        content: Text(
+          'Barraca adicionada de id ${documentSnapshot.id}',
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 }
