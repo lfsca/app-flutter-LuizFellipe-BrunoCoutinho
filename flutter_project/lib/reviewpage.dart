@@ -24,8 +24,9 @@ class ReviewPage extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 20),
               resumoAvaliacoes(barraca),
-              for (var avaliacao in barraca.avaliacoes)
-                containerAvaliacao(avaliacao)
+              if (barraca.avaliacoes != null)
+                for (var avaliacao in barraca.avaliacoes!)
+                  containerAvaliacao(avaliacao)
             ],
           )),
     );
@@ -63,7 +64,7 @@ class ReviewPage extends StatelessWidget {
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             )),
-        Text("${barraca.avaliacoes.length} avaliações no último ano")
+        Text("${barraca.avaliacoes?.length ?? 0} avaliações no último ano")
       ],
     );
   }

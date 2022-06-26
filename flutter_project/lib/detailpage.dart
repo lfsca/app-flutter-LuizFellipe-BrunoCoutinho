@@ -24,8 +24,9 @@ class DetailPage extends StatelessWidget {
                 if (barraca.imagemBarraca != "IMAGEM")
                   exibeImagemBarraca(barraca),
                 WidgetResumoBarraca(barraca: barraca),
-                for (var quentinha in barraca.quentinhas)
-                  WidgetQuentinha(quentinha: quentinha)
+                if (barraca.quentinhas != null)
+                  for (var quentinha in barraca.quentinhas!)
+                    WidgetQuentinha(quentinha: quentinha)
               ],
             )));
   }
@@ -33,10 +34,10 @@ class DetailPage extends StatelessWidget {
   GestureDetector exibeImagemBarraca(Barraca barraca) {
     return GestureDetector(
         onDoubleTap: () {
-          ImageDialog(barraca.imagemBarraca);
+          ImageDialog(barraca.imagemBarraca!);
         },
         child: (Image.asset(
-          barraca.imagemBarraca,
+          barraca.imagemBarraca!,
           width: 250.0,
           height: 250.0,
         )));
@@ -62,7 +63,8 @@ class WidgetResumoBarraca extends StatelessWidget {
       ),
       Padding(
           padding: const EdgeInsets.only(bottom: 10),
-          child: Text(barraca.descricao, style: const TextStyle(fontSize: 16))),
+          child: Text(barraca.descricao ?? "Sem descrição",
+              style: const TextStyle(fontSize: 16))),
       GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, ReviewPage.routeName,
@@ -71,27 +73,28 @@ class WidgetResumoBarraca extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RatingBar(
-                initialRating: barraca.calculaMediaAvaliacoes(),
-                direction: Axis.horizontal,
-                ignoreGestures: true,
-                allowHalfRating: true,
-                itemCount: 5,
-                itemSize: 24,
-                ratingWidget: RatingWidget(
-                  empty: const Icon(Icons.star_outline,
-                      color: Color.fromARGB(255, 255, 230, 0)),
-                  half: const Icon(Icons.star_half,
-                      color: Color.fromARGB(255, 255, 230, 0)),
-                  full: const Icon(Icons.star,
-                      color: Color.fromARGB(255, 255, 230, 0)),
+              if (barraca.hasAvaliacao())
+                RatingBar(
+                  initialRating: barraca.calculaMediaAvaliacoes(),
+                  direction: Axis.horizontal,
+                  ignoreGestures: true,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemSize: 24,
+                  ratingWidget: RatingWidget(
+                    empty: const Icon(Icons.star_outline,
+                        color: Color.fromARGB(255, 255, 230, 0)),
+                    half: const Icon(Icons.star_half,
+                        color: Color.fromARGB(255, 255, 230, 0)),
+                    full: const Icon(Icons.star,
+                        color: Color.fromARGB(255, 255, 230, 0)),
+                  ),
+                  onRatingUpdate: (value) {},
                 ),
-                onRatingUpdate: (value) {},
-              ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
-                child:
-                    Text(barraca.avaliacoes.length.toString() + " Avaliações"),
+                child: Text(
+                    barraca.avaliacoes?.length.toString() ?? "0" " Avaliações"),
               ),
               const Icon(Icons.arrow_right)
             ],
