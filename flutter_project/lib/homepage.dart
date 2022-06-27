@@ -8,6 +8,7 @@ import 'package:flutter_project/login.dart';
 import 'dart:async';
 import 'package:flutter_project/style/style.dart';
 import 'package:flutter_project/style/palette.dart';
+import 'package:flutter_project/db/Database.dart';
 
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;

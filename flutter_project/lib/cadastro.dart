@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_project/login.dart';
 
-import 'models/usuario.dart';
+import 'package:flutter_project/models/usuario.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth_email/main.dart';
 // import 'package:firebase_auth_email/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/models/barraca.dart';
+import 'package:flutter_project/models/usuario.dart';
+import 'package:flutter_project/db/Database.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -94,6 +97,27 @@ class _LoginWidgetState extends State<LoginWidget> {
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
+    }
+
+    final user = FirebaseAuth.instance.currentUser;
+    print("AAAAAAAAAAA");
+    if (user != null) {
+      // parseUser(user.uid);
+      // print("BBBBBBB");
+      Usuario usuarioAtual = await readUser(user.uid);
+      print(usuarioAtual);
+      print("CCCCCCC");
+      DBProvider.db.insertUsuario(usuarioAtual);
+
+      Usuario usuariolido = await DBProvider.db.lerUsuario(user.uid);
+      String? usuarioadministrador = usuariolido.administrador;
+      print(usuariolido);
+      print("AEEEOOOOUUU");
+      print(usuariolido.id);
+    } else {
+      print("DDDDDDD");
+      final usuarioAtual = null;
+      final usuarioNovo = null;
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

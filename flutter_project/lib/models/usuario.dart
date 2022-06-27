@@ -1,3 +1,4 @@
+import 'package:flutter_project/db/Database.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,15 +7,15 @@ class Usuario {
   String? id;
   String nome;
   String? email;
-  bool? vendedor;
-  bool? administrador;
+  String? vendedor;
+  String? administrador;
 
   Usuario({
     this.id,
     this.nome = "",
     this.email,
-    this.vendedor = false,
-    this.administrador = false,
+    this.vendedor,
+    this.administrador,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,6 +28,22 @@ class Usuario {
     };
   }
 
+  factory Usuario.fromJson(Map<String, dynamic> json, String uid) => Usuario(
+        id: uid,
+        nome: json['nome'],
+        email: json['email'],
+        vendedor: json['vendedor'],
+        administrador: json['administrador'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nome": nome,
+        "email": email,
+        "vendedor": vendedor,
+        "administrador": administrador,
+      };
+
   @override
   String toString() {
     return 'Usuario {id: $id, nome: $nome, email: $email, vendedor: $vendedor, administrador: $administrador}';
@@ -35,13 +52,16 @@ class Usuario {
   static Future addUser(uid, String nome, String email, bool vendedor) async {
     final usuario = FirebaseFirestore.instance.collection('usuario').doc(uid);
     // Call the user's CollectionReference to add a new user
-
+    String vendedorString = "0";
+    if (vendedor == true) {
+      vendedorString = "1";
+    }
     try {
       final json = {
         'nome': nome,
         'email': email,
-        'vendedor': vendedor,
-        'administrador': false,
+        'vendedor': vendedorString,
+        'administrador': "0",
       };
       await usuario.set(json);
     } catch (error) {
@@ -60,21 +80,46 @@ class Usuario {
     );
   }
 
-  static Usuario fromJson(Map<String, dynamic> json) => Usuario(
-        id: "1", //json['documentID'],
+  factory Usuario.fromMap(Map<String, dynamic> json, String uid) => Usuario(
+        id: uid,
         nome: json['nome'],
         email: json['email'],
-        //vendedor: json['vendedor'],
-        //administrador: json['administrador'],
+        vendedor: json['vendedor'],
+        administrador: json['administrador'],
       );
 }
 
-Future<Usuario?> readUser(uid) async {
-  final docUser = FirebaseFirestore.instance.collection('users').doc(uid);
+Future<Usuario> readUser(uid) async {
+  final docUser = FirebaseFirestore.instance.collection('usuario').doc(uid);
   final snapshot = await docUser.get();
 
   if (snapshot.exists) {
-    return Usuario.fromJson(snapshot.data()!);
+    print("READ USER1");
+    print(snapshot.data);
+    print(Usuario.fromJson(snapshot.data()!, uid));
+    print("READ USER2");
+    return Usuario.fromJson(snapshot.data()!, uid);
+  }
+  return Usuario();
+}
+
+Future<void> parseUser(uid) async {
+  final docUser = FirebaseFirestore.instance.collection('users').doc(uid);
+  final snapshot = await docUser.get();
+  final database =
+      openDatabase(join(await getDatabasesPath(), 'HoraDoRango.db'));
+  final db = await database;
+  Usuario? novoUsuario;
+
+  if (snapshot.exists) {
+    novoUsuario = Usuario.fromJson(snapshot.data()!, uid);
+  }
+  if (novoUsuario != null) {
+    await db.insert(
+      'usuario',
+      novoUsuario.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }
 
@@ -91,16 +136,4 @@ Future<List<Usuario>> fetchVendedores() async {
     }
   });
   return list;
-}
-
-Future<void> insertUsuario(Usuario usuario) async {
-  final database =
-      openDatabase(join(await getDatabasesPath(), 'HoraDoRango.db'));
-  final db = await database;
-
-  await db.insert(
-    'usuarios',
-    usuario.toMap(),
-    conflictAlgorithm: ConflictAlgorithm.replace,
-  );
 }
