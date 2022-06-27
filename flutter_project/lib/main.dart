@@ -6,10 +6,12 @@ import 'package:flutter_project/homepage.dart';
 import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/login.dart';
 import 'package:flutter_project/models/usuario.dart';
+import 'package:flutter_project/providers/userProvider.dart';
 import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/reviewpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_project/cadastro.dart';
+import 'package:provider/provider.dart';
 import 'firebaseSettings/firebase_options.dart';
 
 void main() async {
@@ -17,7 +19,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => usuarioAtual(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
