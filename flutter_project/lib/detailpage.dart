@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/imagemBarraca.dart';
 import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/models/quentinha.dart';
 import 'package:flutter_project/reviewpage.dart';
@@ -36,11 +37,7 @@ class DetailPage extends StatelessWidget {
         onDoubleTap: () {
           ImageDialog(barraca.imagemBarraca!);
         },
-        child: (Image.asset(
-          barraca.imagemBarraca!,
-          width: 250.0,
-          height: 250.0,
-        )));
+        child: ImagemBarraca(imagemPath: barraca.imagemBarraca!));
   }
 }
 
