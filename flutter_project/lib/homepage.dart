@@ -5,6 +5,7 @@ import 'package:flutter_project/detailpage.dart';
 import 'package:flutter_project/cadastro.dart';
 import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/login.dart';
+import 'package:flutter_project/myBarraca.dart';
 import 'dart:async';
 import 'package:flutter_project/style/style.dart';
 import 'package:flutter_project/style/palette.dart';
@@ -98,7 +99,11 @@ class HomePage extends StatelessWidget {
             Navigator.pushNamed(context, AddBarracaPage.routeName);
           }),
       const Divider(color: Colors.black),
-      ListTile(title: const Text("MINHA BARRAQUINHA"), onTap: () {}),
+      ListTile(
+          title: const Text("MINHA BARRAQUINHA"),
+          onTap: () {
+            Navigator.pushNamed(context, MyBarracaPage.routeName);
+          }),
       const Divider(color: Colors.black),
     ]));
   }

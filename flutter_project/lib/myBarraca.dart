@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/imageUpload.dart';
 import 'package:flutter_project/imagemBarraca.dart';
 
 import 'models/barraca.dart';
 import 'models/usuario.dart';
 
 class MyBarracaPage extends StatefulWidget {
-  const MyBarracaPage({Key? key}) : super(key: key);
-
   static const routeName = '/myBarracaPage';
+
+  const MyBarracaPage({Key? key}) : super(key: key);
 
   @override
   State<MyBarracaPage> createState() => _MyBarracaState();
@@ -38,9 +39,10 @@ class _MyBarracaState extends State<MyBarracaPage> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                    ImageUpload(),
                     const SizedBox(height: 40),
                     //formFields(vendedores),
-                    const SizedBox(height: 20),
+                    //const SizedBox(height: 20),
                     //submitButton(),
                   ])),
             )));
@@ -48,29 +50,39 @@ class _MyBarracaState extends State<MyBarracaPage> {
 }
 
 class EditableImagemBarraca extends StatelessWidget {
-  const EditableImagemBarraca({Key? key}) : super(key: key);
+  const EditableImagemBarraca({Key? key, required this.callback})
+      : super(key: key);
+
+  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
     // TODO: substituir pele edição de imagem com imgPicker
+    final color = Theme.of(context).colorScheme.primary;
     return Stack(
       children: [
-        ImagemBarraca(imagemPath: "barraca.imagemBarraca!"),
+        const ImagemBarraca(imagemPath: "barraca.imagemBarraca!"),
+        Positioned(
+          bottom: 0,
+          right: 4,
+          child: buildEditIcon(color, callback),
+        ),
       ],
     );
   }
 }
 
-Widget buildEditIcon(Color color) => buildCircle(
+Widget buildEditIcon(Color color, VoidCallback callback) => buildCircle(
       color: Colors.white,
       all: 3,
       child: buildCircle(
         color: color,
         all: 8,
-        child: const Icon(
-          Icons.add_a_photo,
+        child: IconButton(
+          icon: const Icon(Icons.add_a_photo),
           color: Colors.white,
-          size: 20,
+          iconSize: 20,
+          onPressed: callback,
         ),
       ),
     );
