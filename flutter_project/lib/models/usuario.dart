@@ -131,7 +131,7 @@ Future<List<Usuario>> fetchVendedores() async {
       .then((QuerySnapshot querySnapshot) {
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      if (data['vendedor'] == true)
+      if (data['vendedor'] == '1')
         list.add(Usuario.fromFirestore(data, doc.id));
     }
   });
