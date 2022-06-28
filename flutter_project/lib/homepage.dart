@@ -6,28 +6,26 @@ import 'package:flutter_project/cadastro.dart';
 import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/login.dart';
 import 'package:flutter_project/myBarraca.dart';
+import 'package:flutter_project/providers/userProvider.dart';
 import 'dart:async';
 import 'package:flutter_project/style/style.dart';
 import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/db/Database.dart';
+import 'package:provider/provider.dart';
+
+import 'models/usuario.dart';
 
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;
 
-  const HomePage({Key? key, required this.barracas}) : super(key: key);
+  HomePage({Key? key, required this.barracas}) : super(key: key);
+
+  late usuarioAtual usuario;
 
   @override
   Widget build(BuildContext context) {
-    String userEmail;
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      userEmail = (user.email).toString();
-    } else {
-      userEmail = "DESLOGADO";
-    }
-
     return Scaffold(
-        drawer: sideMenu(userEmail, context),
+        drawer: sideMenu(context),
         appBar: AppBar(
             title: const Text('Hora do Rango PUC-Rio'),
             leading: Builder(
@@ -57,23 +55,40 @@ class HomePage extends StatelessWidget {
             ]))));
   }
 
-  Drawer sideMenu(String userEmail, BuildContext context) {
+  Drawer sideMenu(BuildContext context) {
+    usuario = Provider.of<usuarioAtual>(context);
     return Drawer(
         child: ListView(children: [
       DrawerHeader(
           decoration: const BoxDecoration(
             color: Color.fromARGB(218, 160, 209, 219),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Usuario:", style: TextStyle(fontSize: 16)),
-              const SizedBox(height: 8),
-              Text(userEmail,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold))
-            ],
-          )),
+          child: FutureBuilder<Usuario>(
+              future: usuario.checarUsuario(),
+              builder: (BuildContext context, AsyncSnapshot<Usuario> snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Usuario:", style: TextStyle(fontSize: 16)),
+                      const SizedBox(height: 8),
+                      Text(snapshot.data!.email!,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold))
+                    ],
+                  );
+                }
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Usuario:", style: TextStyle(fontSize: 16)),
+                    const SizedBox(height: 8),
+                    Text("DESLOGADO",
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold))
+                  ],
+                );
+              })),
       const Divider(color: Colors.black),
       ListTile(
           title: const Text("LOGIN"),
