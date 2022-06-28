@@ -17,12 +17,10 @@ class DBProvider {
   }
 
   initDB() async {
-    print("ENTREI NO INITDB");
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, 'HoraDoRango.db');
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
-      print("ENTREI NO ONCREATE");
       await db.execute("CREATE TABLE Usuario ("
           "id TEXT PRIMARY KEY,"
           "nome TEXT,"
@@ -48,7 +46,6 @@ class DBProvider {
   }
 
   Future<Usuario> lerUsuario(uid) async {
-    print("ENTROU NO LERRR");
     final banco = await db.database;
 
     var res = await banco.query('Usuario', where: "id = ?", whereArgs: [uid]);

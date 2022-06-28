@@ -8,14 +8,29 @@ import 'package:flutter_project/models/tamanho_quentinha.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
-
   static const routeName = '/detailpage';
+
+  @override
+  DetailPageState createState() => DetailPageState();
+}
+
+class DetailPageState extends State<DetailPage> {
+  void _onMapCreated(GoogleMapController controller) {
+    GoogleMapController mapController = controller;
+  }
+
+  Set<Marker> markers = new Set<Marker>();
 
   @override
   Widget build(BuildContext context) {
     final barraca = ModalRoute.of(context)!.settings.arguments as Barraca;
+    final Marker marker = Marker(
+        markerId: new MarkerId("123"),
+        position: LatLng(-22.97898, -43.230540),
+        infoWindow: InfoWindow(title: barraca.nomeBarraca));
+    markers.add(marker);
     return Scaffold(
         appBar: AppBar(title: Text(barraca.nomeBarraca)),
         body: Container(
@@ -26,21 +41,25 @@ class DetailPage extends StatelessWidget {
                 if (barraca.imagemBarraca != "IMAGEM")
                   exibeImagemBarraca(barraca),
                 WidgetResumoBarraca(barraca: barraca),
-                // Column(
-                //   children: <Widget>[
-                //     Container(
-                //         height: MediaQuery.of(context).size.height,
-                //         width: MediaQuery.of(context).size.width,
-                //         child: GoogleMap(
-                //           onMapCreated: (GoogleMapController controller) {},
-                //           initialCameraPosition: CameraPosition(
-                //               target: LatLng(-22.9782, -43.2333)),
-                //         )),
-                //   ],
-                // ),
                 if (barraca.quentinhas != null)
                   for (var quentinha in barraca.quentinhas!)
-                    WidgetQuentinha(quentinha: quentinha)
+                    WidgetQuentinha(quentinha: quentinha),
+                Column(
+                  children: <Widget>[
+                    if (barraca.lat != null)
+                      Container(
+                          margin: const EdgeInsets.all(20),
+                          height: MediaQuery.of(context).size.height - 500,
+                          width: MediaQuery.of(context).size.width,
+                          child: GoogleMap(
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: CameraPosition(
+                                target: LatLng(barraca.lat!, barraca.ln!),
+                                zoom: 20.0),
+                            markers: markers,
+                          )),
+                  ],
+                ),
               ],
             )));
   }

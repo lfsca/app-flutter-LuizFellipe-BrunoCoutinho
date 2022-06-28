@@ -8,13 +8,18 @@ class Barraca {
   final String? imagemBarraca;
   final List<Avaliacao>? avaliacoes;
   final List<Quentinha>? quentinhas;
+  final double? lat;
+  final double? ln;
 
-  Barraca(
-      {required this.nomeBarraca,
-      this.descricao = "Sem descrição",
-      this.imagemBarraca,
-      this.avaliacoes,
-      this.quentinhas});
+  Barraca({
+    required this.nomeBarraca,
+    this.descricao = "Sem descrição",
+    this.imagemBarraca,
+    this.avaliacoes,
+    this.quentinhas,
+    this.lat,
+    this.ln,
+  });
 
   factory Barraca.fromFirestore(Map<String, dynamic>? data) {
     List<Quentinha> listaQuentinhas = [];
@@ -35,11 +40,14 @@ class Barraca {
     }
 
     return Barraca(
-        nomeBarraca: data?['nomeBarraca'],
-        descricao: data?['descricao'],
-        imagemBarraca: data?['imagemBarraca'],
-        avaliacoes: listaAvaliacoes,
-        quentinhas: listaQuentinhas);
+      nomeBarraca: data?['nomeBarraca'],
+      descricao: data?['descricao'],
+      imagemBarraca: data?['imagemBarraca'],
+      avaliacoes: listaAvaliacoes,
+      quentinhas: listaQuentinhas,
+      lat: data?['lat'],
+      ln: data?['ln'],
+    );
   }
 
   bool hasAvaliacao() => avaliacoes!.isNotEmpty;

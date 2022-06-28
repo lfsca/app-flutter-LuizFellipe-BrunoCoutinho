@@ -97,6 +97,9 @@ class _RegisterPageState extends State<RegisterPage> {
           if (value == null || value.isEmpty) {
             return 'Por favor insira uma senha';
           }
+          if (value.length < 6) {
+            return 'A senha deve ter pelo menos 6 digitos!';
+          }
           return null;
         },
       ),
@@ -115,6 +118,9 @@ class _RegisterPageState extends State<RegisterPage> {
         validator: (String? value) {
           if (value == null || value.isEmpty) {
             return 'Por favor insira seu email';
+          }
+          if (!value.contains('@')) {
+            return 'Formato de email incorreto!';
           }
           return null;
         },
