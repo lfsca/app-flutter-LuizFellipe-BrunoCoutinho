@@ -6,6 +6,7 @@ import 'package:flutter_project/reviewpage.dart';
 import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/models/tamanho_quentinha.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -25,6 +26,18 @@ class DetailPage extends StatelessWidget {
                 if (barraca.imagemBarraca != "IMAGEM")
                   exibeImagemBarraca(barraca),
                 WidgetResumoBarraca(barraca: barraca),
+                // Column(
+                //   children: <Widget>[
+                //     Container(
+                //         height: MediaQuery.of(context).size.height,
+                //         width: MediaQuery.of(context).size.width,
+                //         child: GoogleMap(
+                //           onMapCreated: (GoogleMapController controller) {},
+                //           initialCameraPosition: CameraPosition(
+                //               target: LatLng(-22.9782, -43.2333)),
+                //         )),
+                //   ],
+                // ),
                 if (barraca.quentinhas != null)
                   for (var quentinha in barraca.quentinhas!)
                     WidgetQuentinha(quentinha: quentinha)
