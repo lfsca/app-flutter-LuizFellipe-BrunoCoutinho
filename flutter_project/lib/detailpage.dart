@@ -50,7 +50,7 @@ class DetailPage extends StatelessWidget {
         onDoubleTap: () {
           ImageDialog(barraca.imagemBarraca!);
         },
-        child: ImagemBarraca(imagemPath: barraca.imagemBarraca!));
+        child: ImagemBarraca(url: barraca.imagemBarraca!));
   }
 }
 

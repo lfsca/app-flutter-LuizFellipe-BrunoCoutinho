@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter_project/providers/barracaImageProvider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-import 'package:flutter_project/imagemBarraca.dart';
+import 'package:provider/provider.dart';
+
+import 'imagemBarraca.dart';
 
 class ImageUpload extends StatefulWidget {
   const ImageUpload({Key? key}) : super(key: key);
@@ -15,60 +17,56 @@ class ImageUpload extends StatefulWidget {
 }
 
 class _ImageUploadState extends State<ImageUpload> {
-  firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
+  FirebaseStorage storage = FirebaseStorage.instance;
 
   File? _photo;
   final ImagePicker _picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color.fromARGB(218, 160, 209, 219);
+    const primaryColor = Colors.black;
     final secondaryColor = Theme.of(context).colorScheme.primary;
 
     return Stack(
       children: [
-        const ImagemBarraca(imagemPath: "assets/img/milos.jpeg"),
+        Consumer<ImagePath>(builder: (context, imagePath, child) {
+          return ImagemBarraca(url: imagePath.fileName);
+        }),
         Positioned(
           bottom: 0,
           right: 4,
-          child: buildEditIcon(primaryColor, secondaryColor, imgFromCamera),
+          child: BuildEditIcon(
+              primaryColor: primaryColor,
+              secondaryColor: secondaryColor,
+              callback: imgFromCamera),
         ),
       ],
     );
   }
 
-  Future imgFromGallery() async {
+  Future imgFromGallery(BuildContext context) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
-        uploadFile();
-      } else {
-        print('No image selected.');
+        uploadFile(context);
       }
     });
   }
 
-  Future testeCallback() async {
-    print("chegou no callback");
-  }
-
-  Future imgFromCamera() async {
+  Future imgFromCamera(BuildContext context) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
-        uploadFile();
-      } else {
-        print('No image selected.');
+        uploadFile(context);
       }
     });
   }
 
-  Future uploadFile() async {
+  Future uploadFile(BuildContext context) async {
     if (_photo == null) return;
     final fileName = basename(_photo!.path);
     final destination = 'imgsBarracas/$fileName';
@@ -78,13 +76,29 @@ class _ImageUploadState extends State<ImageUpload> {
       await ref.putFile(_photo!);
     } catch (e) {
       print('error occured');
+    } finally {
+      var imagePath = Provider.of<ImagePath>(context, listen: false);
+      imagePath.setFileName(
+          "imgsBarracas/c2574eef-c55e-4dfb-a747-df3872d546ee1516213396568976974.jpg");
     }
   }
 }
 
-Widget buildEditIcon(
-        Color primaryColor, Color secondaryColor, VoidCallback callback) =>
-    buildCircle(
+class BuildEditIcon extends StatelessWidget {
+  Color primaryColor;
+  Color secondaryColor;
+  Function(BuildContext) callback;
+
+  BuildEditIcon(
+      {Key? key,
+      required this.primaryColor,
+      required this.secondaryColor,
+      required this.callback})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return buildCircle(
       color: primaryColor,
       all: 3,
       child: buildCircle(
@@ -94,10 +108,13 @@ Widget buildEditIcon(
           icon: const Icon(Icons.edit),
           color: Colors.black,
           iconSize: 32,
-          onPressed: callback,
+          //onPressed: () => print("pressionou"),
+          onPressed: () => callback(context),
         ),
       ),
     );
+  }
+}
 
 Widget buildCircle({
   required Widget child,

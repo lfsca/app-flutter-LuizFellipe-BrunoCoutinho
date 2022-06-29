@@ -1,7 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/imageUpload.dart';
 import 'package:flutter_project/imagemBarraca.dart';
+import 'package:flutter_project/providers/barracaImageProvider.dart';
+import 'package:provider/provider.dart';
 
 import 'models/barraca.dart';
 import 'models/usuario.dart';
@@ -39,7 +40,11 @@ class _MyBarracaState extends State<MyBarracaPage> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                    ImageUpload(),
+                    ChangeNotifierProvider(
+                      create: (context) => ImagePath(
+                          "imgsBarracas/0424ec5a-0777-4f5c-908e-d8334b9c34663975699593506526289.jpg"),
+                      child: const ImageUpload(),
+                    ),
                     const SizedBox(height: 40),
                     //formFields(vendedores),
                     //const SizedBox(height: 20),
@@ -57,11 +62,10 @@ class EditableImagemBarraca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: substituir pele edição de imagem com imgPicker
     final color = Theme.of(context).colorScheme.primary;
     return Stack(
       children: [
-        const ImagemBarraca(imagemPath: "barraca.imagemBarraca!"),
+        const ImagemBarraca(url: "barraca.imagemBarraca!"),
         Positioned(
           bottom: 0,
           right: 4,
