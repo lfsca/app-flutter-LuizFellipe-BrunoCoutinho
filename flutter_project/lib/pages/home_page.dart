@@ -132,26 +132,28 @@ class HomePage extends StatelessWidget {
               FirebaseAuth.instance.signOut();
             }),
         const Divider(color: Colors.black),
-        ListTile(
-            title: const Text("ADICIONAR BARRACA"),
-            onTap: () {
-              Navigator.pushNamed(context, AddBarracaPage.routeName);
-            }),
-        const Divider(color: Colors.black),
-        FutureBuilder<List<Barraca>>(
-            future: barracas,
-            builder: (BuildContext context, snapshot) {
-              if (snapshot.hasData) {
-                return ListTile(
-                    title: const Text("MINHA BARRAQUINHA"),
-                    onTap: () {
-                      Navigator.pushNamed(context, MyBarracaPage.routeName,
-                          arguments: snapshot.data![0]);
-                    });
-              } else {
-                return const CircularProgressIndicator();
-              }
-            }),
+        if (usuario?.administrador == '1')
+          ListTile(
+              title: const Text("ADICIONAR BARRACA"),
+              onTap: () {
+                Navigator.pushNamed(context, AddBarracaPage.routeName);
+              }),
+        if (usuario?.administrador == '1') const Divider(color: Colors.black),
+        if (usuario?.administrador == '1')
+          FutureBuilder<List<Barraca>>(
+              future: barracas,
+              builder: (BuildContext context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListTile(
+                      title: const Text("MINHA BARRAQUINHA"),
+                      onTap: () {
+                        Navigator.pushNamed(context, MyBarracaPage.routeName,
+                            arguments: snapshot.data![0]);
+                      });
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
         const Divider(color: Colors.black),
       ],
     );
