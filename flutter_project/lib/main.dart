@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/addBarraca.dart';
+import 'package:flutter_project/pages/add_barraca_page.dart';
 import 'package:flutter_project/db/Database.dart';
 import 'package:flutter_project/models/barraca.dart';
-import 'package:flutter_project/homepage.dart';
-import 'package:flutter_project/detailpage.dart';
-import 'package:flutter_project/login.dart';
+import 'package:flutter_project/pages/home_page.dart';
+import 'package:flutter_project/pages/detail_page.dart';
+import 'package:flutter_project/pages/login_page.dart';
 import 'package:flutter_project/models/usuario.dart';
-import 'package:flutter_project/myBarraca.dart';
+import 'package:flutter_project/pages/my_barraca_page.dart';
 import 'package:flutter_project/providers/userProvider.dart';
 import 'package:flutter_project/style/palette.dart';
-import 'package:flutter_project/reviewpage.dart';
+import 'package:flutter_project/pages/review_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_project/cadastro.dart';
+import 'package:flutter_project/pages/cadastro_page.dart';
 import 'package:provider/provider.dart';
 import 'firebaseSettings/firebase_options.dart';
 

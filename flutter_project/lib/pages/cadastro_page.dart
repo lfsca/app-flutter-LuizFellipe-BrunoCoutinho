@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_project/login.dart';
+import 'package:flutter_project/pages/login_page.dart';
 
 import 'package:flutter_project/models/usuario.dart';
 
-import 'db/Database.dart';
+import '../db/Database.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

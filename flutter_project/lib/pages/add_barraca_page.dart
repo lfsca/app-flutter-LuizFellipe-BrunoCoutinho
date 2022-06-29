@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'models/barraca.dart';
-import 'models/usuario.dart';
+import '../models/barraca.dart';
+import '../models/usuario.dart';
 
 class AddBarracaPage extends StatefulWidget {
   const AddBarracaPage({Key? key}) : super(key: key);

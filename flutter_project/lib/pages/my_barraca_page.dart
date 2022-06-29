@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/imageUpload.dart';
-import 'package:flutter_project/imagemBarraca.dart';
+import 'package:flutter_project/widgets/image_upload.dart';
+import 'package:flutter_project/widgets/imagem_barraca.dart';
 import 'package:flutter_project/providers/barracaImageProvider.dart';
 import 'package:provider/provider.dart';
 
-import 'models/barraca.dart';
-import 'models/usuario.dart';
+import '../models/barraca.dart';
+import '../models/usuario.dart';
 
 class MyBarracaPage extends StatefulWidget {
   static const routeName = '/myBarracaPage';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/imagemBarraca.dart';
+import 'package:flutter_project/widgets/imagem_barraca.dart';
 import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/models/quentinha.dart';
-import 'package:flutter_project/reviewpage.dart';
+import 'package:flutter_project/pages/review_page.dart';
 import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/models/tamanho_quentinha.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

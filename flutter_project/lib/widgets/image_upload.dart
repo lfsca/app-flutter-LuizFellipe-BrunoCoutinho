@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
-import 'imagemBarraca.dart';
+import 'imagem_barraca.dart';
 
 class ImageUpload extends StatefulWidget {
   const ImageUpload({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth_email/main.dart';
 // import 'package:firebase_auth_email/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/homepage.dart';
+import 'package:flutter_project/pages/home_page.dart';
 import 'package:flutter_project/models/barraca.dart';
 import 'package:flutter_project/models/usuario.dart';
 import 'package:flutter_project/db/Database.dart';

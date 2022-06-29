@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/addBarraca.dart';
-import 'package:flutter_project/detailpage.dart';
-import 'package:flutter_project/cadastro.dart';
+import 'package:flutter_project/pages/add_barraca_page.dart';
+import 'package:flutter_project/pages/detail_page.dart';
+import 'package:flutter_project/pages/cadastro_page.dart';
 import 'package:flutter_project/models/barraca.dart';
-import 'package:flutter_project/login.dart';
-import 'package:flutter_project/myBarraca.dart';
+import 'package:flutter_project/pages/login_page.dart';
+import 'package:flutter_project/pages/my_barraca_page.dart';
 import 'package:flutter_project/providers/userProvider.dart';
 import 'dart:async';
 import 'package:flutter_project/style/style.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_project/style/palette.dart';
 import 'package:flutter_project/db/Database.dart';
 import 'package:provider/provider.dart';
 
-import 'models/usuario.dart';
+import '../models/usuario.dart';
 
 class HomePage extends StatelessWidget {
   final Future<List<Barraca>> barracas;
