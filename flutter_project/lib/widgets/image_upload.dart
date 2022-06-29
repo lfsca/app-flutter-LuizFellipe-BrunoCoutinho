@@ -39,6 +39,7 @@ class _ImageUploadState extends State<ImageUpload> {
           child: BuildEditIcon(
               primaryColor: primaryColor,
               secondaryColor: secondaryColor,
+              // todo callback p funcao q faz escolha entre camera e galeria
               callback: imgFromCamera),
         ),
       ],
@@ -79,8 +80,8 @@ class _ImageUploadState extends State<ImageUpload> {
       print('error occured');
     } finally {
       var imagePath = Provider.of<ImagePath>(context, listen: false);
-      imagePath.setFileName(
-          "imgsBarracas/c2574eef-c55e-4dfb-a747-df3872d546ee1516213396568976974.jpg");
+      // deveria colocar nome da img da barraca no banco como
+      imagePath.setFileName(destination);
     }
   }
 }

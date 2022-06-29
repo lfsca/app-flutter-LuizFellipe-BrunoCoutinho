@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/widgets/image_upload.dart';
-import 'package:flutter_project/widgets/imagem_barraca.dart';
 import 'package:flutter_project/providers/barracaImageProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,12 +20,16 @@ class _MyBarracaState extends State<MyBarracaPage> {
 
   late Usuario vendedorField;
   final nomeController = TextEditingController();
+  final descricaoController = TextEditingController();
+  final coordenadasController = TextEditingController();
+  final quentinhasController = TextEditingController();
 
   String nome = "";
   late Usuario vendedor;
 
   @override
   Widget build(BuildContext context) {
+    final barraca = ModalRoute.of(context)!.settings.arguments as Barraca;
     return Scaffold(
         appBar: AppBar(
           title: const Text('Minha Barraca'),
@@ -41,15 +44,104 @@ class _MyBarracaState extends State<MyBarracaPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                     ChangeNotifierProvider(
-                      create: (context) => ImagePath(
-                          "imgsBarracas/0424ec5a-0777-4f5c-908e-d8334b9c34663975699593506526289.jpg"),
+                      create: (context) => ImagePath(barraca.getImgPath()),
                       child: const ImageUpload(),
                     ),
                     const SizedBox(height: 40),
-                    //formFields(vendedores),
+                    formFields(),
                     //const SizedBox(height: 20),
                     //submitButton(),
                   ])),
             )));
+  }
+
+  Card formFields() {
+    return Card(
+        color: const Color.fromARGB(222, 250, 250, 250),
+        child: Column(children: [
+          nomeField(),
+          const SizedBox(height: 40),
+          descricaoField(),
+          const SizedBox(height: 40),
+          coordenadasField(),
+          const SizedBox(height: 40),
+          quentinhasField()
+        ]));
+  }
+
+  Container nomeField() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: TextFormField(
+        controller: nomeController,
+        decoration: const InputDecoration(
+          labelText: 'Nome',
+          hintText: 'Insira o nome da barraca',
+        ),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return 'Por favor insira o nome da barraca';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Container descricaoField() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: TextFormField(
+        controller: descricaoController,
+        decoration: const InputDecoration(
+          labelText: 'descricao',
+          hintText: 'Insira a descrição da barraca',
+        ),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return 'Por favor insira a descrição da barraca';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Container coordenadasField() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: TextFormField(
+        controller: coordenadasController,
+        decoration: const InputDecoration(
+          labelText: 'coordenadas',
+          hintText: 'Insira as coordenadas da barraca',
+        ),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return 'Por favor insira as coordenadas da barraca';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Container quentinhasField() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: TextFormField(
+        controller: quentinhasController,
+        decoration: const InputDecoration(
+          labelText: 'quentinhas',
+          hintText: 'Insira as quentinhas da barraca',
+        ),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return 'Por favor insira as quentinhas da barraca';
+          }
+          return null;
+        },
+      ),
+    );
   }
 }

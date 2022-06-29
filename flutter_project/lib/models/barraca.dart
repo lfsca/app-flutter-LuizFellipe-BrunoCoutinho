@@ -26,14 +26,12 @@ class Barraca {
     List<Avaliacao> listaAvaliacoes = [];
 
     if (data?.containsKey("quentinhas") ?? false) {
-      print("UM");
       for (var quentinha in data?['quentinhas']) {
         listaQuentinhas.add(Quentinha.fromJson(quentinha));
       }
     }
 
     if (data?.containsKey("avaliacoes") ?? false) {
-      print("DOIS");
       for (var avaliacao in data?['avaliacoes']) {
         listaAvaliacoes.add(Avaliacao.fromJson(avaliacao));
       }
@@ -61,6 +59,13 @@ class Barraca {
       media = media / avaliacoes!.length;
     }
     return media;
+  }
+
+  String getImgPath() {
+    if (imagemBarraca != null) {
+      return imagemBarraca!;
+    }
+    return "imgsBarracas/default_image.jpg";
   }
 }
 

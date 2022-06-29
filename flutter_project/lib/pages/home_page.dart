@@ -80,11 +80,11 @@ class HomePage extends StatelessWidget {
                 }
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Usuario:", style: TextStyle(fontSize: 16)),
-                    const SizedBox(height: 8),
+                  children: const [
+                    Text("Usuario:", style: TextStyle(fontSize: 16)),
+                    SizedBox(height: 8),
                     Text("DESLOGADO",
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold))
                   ],
                 );
@@ -93,10 +93,11 @@ class HomePage extends StatelessWidget {
       FutureBuilder<Usuario>(
           future: usuario.checarUsuario(),
           builder: (BuildContext context, AsyncSnapshot<Usuario> snapshot) {
-            if (snapshot.hasData)
-              return tileLogado(context);
-            else
+            if (snapshot.hasData) {
+              return tileLogado(context, snapshot.data);
+            } else {
               return tileDeslogado(context);
+            }
           }),
     ]));
   }
@@ -120,7 +121,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget tileLogado(context) {
+  Widget tileLogado(BuildContext context, Usuario? usuario) {
+    Future<List<Barraca>> barracas = fetchBarracas();
+
     return Column(
       children: [
         ListTile(
@@ -135,10 +138,19 @@ class HomePage extends StatelessWidget {
               Navigator.pushNamed(context, AddBarracaPage.routeName);
             }),
         const Divider(color: Colors.black),
-        ListTile(
-            title: const Text("MINHA BARRAQUINHA"),
-            onTap: () {
-              Navigator.pushNamed(context, MyBarracaPage.routeName);
+        FutureBuilder<List<Barraca>>(
+            future: barracas,
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasData) {
+                return ListTile(
+                    title: const Text("MINHA BARRAQUINHA"),
+                    onTap: () {
+                      Navigator.pushNamed(context, MyBarracaPage.routeName,
+                          arguments: snapshot.data![0]);
+                    });
+              } else {
+                return const CircularProgressIndicator();
+              }
             }),
         const Divider(color: Colors.black),
       ],

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BuildEditIcon extends StatelessWidget {
-  Color primaryColor;
-  Color secondaryColor;
-  Function(BuildContext) callback;
+  final Color primaryColor;
+  final Color secondaryColor;
+  final Function(BuildContext) callback;
 
-  BuildEditIcon(
+  const BuildEditIcon(
       {Key? key,
       required this.primaryColor,
       required this.secondaryColor,
@@ -24,7 +24,6 @@ class BuildEditIcon extends StatelessWidget {
           icon: const Icon(Icons.edit),
           color: Colors.black,
           iconSize: 32,
-          //onPressed: () => print("pressionou"),
           onPressed: () => callback(context),
         ),
       ),
