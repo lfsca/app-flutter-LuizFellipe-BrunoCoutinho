@@ -94,7 +94,7 @@ class HomePage extends StatelessWidget {
           future: usuario.checarUsuario(),
           builder: (BuildContext context, AsyncSnapshot<Usuario> snapshot) {
             if (snapshot.hasData)
-              return tileLogado(context);
+              return tileLogado(context, snapshot);
             else
               return tileDeslogado(context);
           }),
@@ -120,7 +120,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget tileLogado(context) {
+  Widget tileLogado(context, snapshot) {
     return Column(
       children: [
         ListTile(
@@ -129,12 +129,14 @@ class HomePage extends StatelessWidget {
               FirebaseAuth.instance.signOut();
             }),
         const Divider(color: Colors.black),
-        ListTile(
-            title: const Text("ADICIONAR BARRACA"),
-            onTap: () {
-              Navigator.pushNamed(context, AddBarracaPage.routeName);
-            }),
-        const Divider(color: Colors.black),
+        if (snapshot.data.administrador == '1')
+          ListTile(
+              title: const Text("ADICIONAR BARRACA"),
+              onTap: () {
+                Navigator.pushNamed(context, AddBarracaPage.routeName);
+              }),
+        if (snapshot.data.administrador == '1')
+          const Divider(color: Colors.black),
         ListTile(
             title: const Text("MINHA BARRAQUINHA"),
             onTap: () {
