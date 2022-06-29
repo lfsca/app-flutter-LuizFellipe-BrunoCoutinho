@@ -157,10 +157,12 @@ class WidgetQuentinha extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                      padding: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.only(top: 4, left: 4, right: 4),
                       child: Text(quentinha.nome,
                           style: const TextStyle(fontSize: 24))),
-                  Text(quentinha.descricao),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 4, left: 4, right: 4),
+                      child: Text(quentinha.descricao)),
                   const Divider(color: Colors.black),
                   for (var tamanho in quentinha.tamanhos)
                     WidgetTamanhoQuentinha(tamanho: tamanho)
