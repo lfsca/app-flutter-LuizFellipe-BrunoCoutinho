@@ -94,10 +94,6 @@ Future<Usuario> readUser(uid) async {
   final snapshot = await docUser.get();
 
   if (snapshot.exists) {
-    print("READ USER1");
-    print(snapshot.data);
-    print(Usuario.fromJson(snapshot.data()!, uid));
-    print("READ USER2");
     return Usuario.fromJson(snapshot.data()!, uid);
   }
   return Usuario();

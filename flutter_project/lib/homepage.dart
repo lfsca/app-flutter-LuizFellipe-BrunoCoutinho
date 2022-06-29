@@ -90,37 +90,59 @@ class HomePage extends StatelessWidget {
                 );
               })),
       const Divider(color: Colors.black),
-      ListTile(
-          title: const Text("LOGIN"),
-          onTap: () {
-            Navigator.pushNamed(context, LoginPage.routeName);
+      FutureBuilder<Usuario>(
+          future: usuario.checarUsuario(),
+          builder: (BuildContext context, AsyncSnapshot<Usuario> snapshot) {
+            if (snapshot.hasData)
+              return tileLogado(context);
+            else
+              return tileDeslogado(context);
           }),
-      const Divider(color: Colors.black),
-      ListTile(
-          title: const Text("SAIR"),
-          onTap: () {
-            FirebaseAuth.instance.signOut();
-          }),
-      const Divider(color: Colors.black),
-      ListTile(
-          title: const Text("CADASTRO"),
-          onTap: () {
-            Navigator.pushNamed(context, RegisterPage.routeName);
-          }),
-      const Divider(color: Colors.black),
-      ListTile(
-          title: const Text("ADICIONAR BARRACA"),
-          onTap: () {
-            Navigator.pushNamed(context, AddBarracaPage.routeName);
-          }),
-      const Divider(color: Colors.black),
-      ListTile(
-          title: const Text("MINHA BARRAQUINHA"),
-          onTap: () {
-            Navigator.pushNamed(context, MyBarracaPage.routeName);
-          }),
-      const Divider(color: Colors.black),
     ]));
+  }
+
+  Widget tileDeslogado(context) {
+    return Column(
+      children: [
+        ListTile(
+            title: const Text("LOGIN"),
+            onTap: () {
+              Navigator.pushNamed(context, LoginPage.routeName);
+            }),
+        const Divider(color: Colors.black),
+        ListTile(
+            title: const Text("CADASTRO"),
+            onTap: () {
+              Navigator.pushNamed(context, RegisterPage.routeName);
+            }),
+        const Divider(color: Colors.black),
+      ],
+    );
+  }
+
+  Widget tileLogado(context) {
+    return Column(
+      children: [
+        ListTile(
+            title: const Text("SAIR"),
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+            }),
+        const Divider(color: Colors.black),
+        ListTile(
+            title: const Text("ADICIONAR BARRACA"),
+            onTap: () {
+              Navigator.pushNamed(context, AddBarracaPage.routeName);
+            }),
+        const Divider(color: Colors.black),
+        ListTile(
+            title: const Text("MINHA BARRAQUINHA"),
+            onTap: () {
+              Navigator.pushNamed(context, MyBarracaPage.routeName);
+            }),
+        const Divider(color: Colors.black),
+      ],
+    );
   }
 }
 

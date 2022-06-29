@@ -100,24 +100,11 @@ class _LoginWidgetState extends State<LoginWidget> {
     }
 
     final user = FirebaseAuth.instance.currentUser;
-    print("AAAAAAAAAAA");
-    if (user != null) {
-      // parseUser(user.uid);
-      // print("BBBBBBB");
-      Usuario usuarioAtual = await readUser(user.uid);
-      print(usuarioAtual);
-      print("CCCCCCC");
-      DBProvider.db.insertUsuario(usuarioAtual);
 
-      Usuario usuariolido = await DBProvider.db.lerUsuario(user.uid);
-      String? usuarioadministrador = usuariolido.administrador;
-      print(usuariolido);
-      print("AEEEOOOOUUU");
-      print(usuariolido.id);
-    } else {
-      print("DDDDDDD");
-      final usuarioAtual = null;
-      final usuarioNovo = null;
+    if (user != null) {
+      Usuario usuarioAtual = await readUser(user.uid);
+
+      DBProvider.db.insertUsuario(usuarioAtual);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

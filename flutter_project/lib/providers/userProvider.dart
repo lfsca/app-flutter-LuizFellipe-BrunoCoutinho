@@ -10,8 +10,6 @@ class usuarioAtual extends ChangeNotifier {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       usuarioLido = await DBProvider.db.lerUsuario(user.uid);
-      print("SIDE MENU");
-      print(usuarioLido);
     } else {
       usuarioLido = "" as Usuario;
     }

@@ -5,6 +5,8 @@ import 'package:flutter_project/login.dart';
 
 import 'package:flutter_project/models/usuario.dart';
 
+import 'db/Database.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -97,6 +99,9 @@ class _RegisterPageState extends State<RegisterPage> {
           if (value == null || value.isEmpty) {
             return 'Por favor insira uma senha';
           }
+          if (value.length < 6) {
+            return 'A senha deve ter pelo menos 6 digitos!';
+          }
           return null;
         },
       ),
@@ -115,6 +120,9 @@ class _RegisterPageState extends State<RegisterPage> {
         validator: (String? value) {
           if (value == null || value.isEmpty) {
             return 'Por favor insira seu email';
+          }
+          if (!value.contains('@')) {
+            return 'Formato de email incorreto!';
           }
           return null;
         },
@@ -183,6 +191,14 @@ class _RegisterPageState extends State<RegisterPage> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Usuario usuarioAtual = await readUser(user.uid);
+
+      DBProvider.db.insertUsuario(usuarioAtual);
+    }
+
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
