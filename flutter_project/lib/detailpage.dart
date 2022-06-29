@@ -38,8 +38,7 @@ class DetailPageState extends State<DetailPage> {
             constraints: const BoxConstraints.expand(),
             child: ListView(
               children: <Widget>[
-                if (barraca.imagemBarraca != "IMAGEM")
-                  exibeImagemBarraca(barraca),
+                if (barraca.imagemBarraca != null) exibeImagemBarraca(barraca),
                 WidgetResumoBarraca(barraca: barraca),
                 if (barraca.quentinhas != null)
                   for (var quentinha in barraca.quentinhas!)

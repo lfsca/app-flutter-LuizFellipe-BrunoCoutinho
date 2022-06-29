@@ -105,12 +105,6 @@ class _LoginWidgetState extends State<LoginWidget> {
       Usuario usuarioAtual = await readUser(user.uid);
 
       DBProvider.db.insertUsuario(usuarioAtual);
-
-      Usuario usuariolido = await DBProvider.db.lerUsuario(user.uid);
-      String? usuarioadministrador = usuariolido.administrador;
-    } else {
-      final usuarioAtual = null;
-      final usuarioNovo = null;
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

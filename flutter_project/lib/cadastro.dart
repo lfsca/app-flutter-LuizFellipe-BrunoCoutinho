@@ -5,6 +5,8 @@ import 'package:flutter_project/login.dart';
 
 import 'package:flutter_project/models/usuario.dart';
 
+import 'db/Database.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -189,6 +191,14 @@ class _RegisterPageState extends State<RegisterPage> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Usuario usuarioAtual = await readUser(user.uid);
+
+      DBProvider.db.insertUsuario(usuarioAtual);
+    }
+
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
