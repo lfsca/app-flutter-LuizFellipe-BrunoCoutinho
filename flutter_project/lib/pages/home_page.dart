@@ -21,9 +21,11 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key, required this.barracas}) : super(key: key);
 
   late usuarioAtual usuario;
+  late usuarioAtual barracaAtualizada;
 
   @override
   Widget build(BuildContext context) {
+    barracaAtualizada = Provider.of<usuarioAtual>(context);
     return Scaffold(
         drawer: sideMenu(context),
         appBar: AppBar(

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/widgets/image_upload.dart';
 import 'package:flutter_project/providers/barracaImageProvider.dart';
@@ -5,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../models/barraca.dart';
 import '../models/usuario.dart';
+import 'login_page.dart';
 
 class MyBarracaPage extends StatefulWidget {
   static const routeName = '/myBarracaPage';
@@ -25,6 +28,7 @@ class _MyBarracaState extends State<MyBarracaPage> {
   final quentinhasController = TextEditingController();
 
   String nome = "";
+  String descricao = "";
   late Usuario vendedor;
 
   @override
@@ -49,8 +53,8 @@ class _MyBarracaState extends State<MyBarracaPage> {
                     ),
                     const SizedBox(height: 40),
                     formFields(),
-                    //const SizedBox(height: 20),
-                    //submitButton(),
+                    const SizedBox(height: 20),
+                    submitButton(),
                   ])),
             )));
   }
@@ -78,12 +82,12 @@ class _MyBarracaState extends State<MyBarracaPage> {
           labelText: 'Nome',
           hintText: 'Insira o nome da barraca',
         ),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return 'Por favor insira o nome da barraca';
-          }
-          return null;
-        },
+        // validator: (String? value) {
+        //   if (value == null || value.isEmpty) {
+        //     return 'Por favor insira o nome da barraca';
+        //   }
+        //   return null;
+        // },
       ),
     );
   }
@@ -97,12 +101,12 @@ class _MyBarracaState extends State<MyBarracaPage> {
           labelText: 'descricao',
           hintText: 'Insira a descrição da barraca',
         ),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return 'Por favor insira a descrição da barraca';
-          }
-          return null;
-        },
+        // validator: (String? value) {
+        //   if (value == null || value.isEmpty) {
+        //     return 'Por favor insira a descrição da barraca';
+        //   }
+        //   return null;
+        // },
       ),
     );
   }
@@ -112,16 +116,18 @@ class _MyBarracaState extends State<MyBarracaPage> {
       margin: const EdgeInsets.all(16),
       child: TextFormField(
         controller: coordenadasController,
+        enabled: false,
+        readOnly: true,
         decoration: const InputDecoration(
           labelText: 'coordenadas',
           hintText: 'Insira as coordenadas da barraca',
         ),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return 'Por favor insira as coordenadas da barraca';
-          }
-          return null;
-        },
+        // validator: (String? value) {
+        //   if (value == null || value.isEmpty) {
+        //     return 'Por favor insira as coordenadas da barraca';
+        //   }
+        //   return null;
+        // },
       ),
     );
   }
@@ -131,17 +137,66 @@ class _MyBarracaState extends State<MyBarracaPage> {
       margin: const EdgeInsets.all(16),
       child: TextFormField(
         controller: quentinhasController,
+        enabled: false,
+        readOnly: true,
         decoration: const InputDecoration(
           labelText: 'quentinhas',
           hintText: 'Insira as quentinhas da barraca',
         ),
-        validator: (String? value) {
-          if (value == null || value.isEmpty) {
-            return 'Por favor insira as quentinhas da barraca';
-          }
-          return null;
-        },
+        // validator: (String? value) {
+        //   if (value == null || value.isEmpty) {
+        //     return 'Por favor insira as quentinhas da barraca';
+        //   }
+        //   return null;
+        // },
       ),
     );
+  }
+
+  ElevatedButton submitButton() {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size.fromHeight(50),
+      ),
+      icon: const Icon(Icons.check, size: 32),
+      label: const Text(
+        'Salvar',
+        style: TextStyle(fontSize: 24),
+      ),
+      onPressed: () {
+        if (_formKey.currentState!.validate()) {
+          nome = nomeController.text;
+          descricao = descricaoController.text;
+          salvar('TKBAzTHj8Ue2ZmkHNiLb', nome, descricao);
+        }
+      },
+    );
+  }
+
+  Future salvar(uid, String? nome, String? descricao) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
+
+    final docUser = FirebaseFirestore.instance.collection('barraca').doc(uid);
+    print("AAAAAAAAAAAAAA");
+    print(nome);
+    print(descricao);
+    if (nome != null)
+      try {
+        docUser.update({'nomeBarraca': nome});
+      } catch (error) {
+        print("Falha ao editar barraca: $error");
+      }
+    ;
+    if (descricao != null)
+      try {
+        docUser.update({'descricao': descricao});
+      } catch (error) {
+        print("Falha ao editar barraca: $error");
+      }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../db/Database.dart';
+import '../models/barraca.dart';
 import '../models/usuario.dart';
 
 class usuarioAtual extends ChangeNotifier {
@@ -15,5 +16,11 @@ class usuarioAtual extends ChangeNotifier {
     }
     notifyListeners();
     return usuarioLido;
+  }
+
+  Future<List<Barraca>> atualizaBarracas() async {
+    Future<List<Barraca>> barracas = fetchBarracas();
+    notifyListeners();
+    return barracas;
   }
 }
