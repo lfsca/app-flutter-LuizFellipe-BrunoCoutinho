@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/models/barraca.dart';
 
 class BuildEditIcon extends StatelessWidget {
   final Color primaryColor;
   final Color secondaryColor;
-  final Function(BuildContext) callback;
+  final Function(BuildContext, Barraca) callback;
+  Barraca barraca;
 
-  const BuildEditIcon(
+  BuildEditIcon(
       {Key? key,
       required this.primaryColor,
       required this.secondaryColor,
-      required this.callback})
+      required this.callback,
+      required this.barraca})
       : super(key: key);
 
   @override
@@ -24,7 +27,7 @@ class BuildEditIcon extends StatelessWidget {
           icon: const Icon(Icons.edit),
           color: Colors.black,
           iconSize: 32,
-          onPressed: () => callback(context),
+          onPressed: () => callback(context, barraca),
         ),
       ),
     );

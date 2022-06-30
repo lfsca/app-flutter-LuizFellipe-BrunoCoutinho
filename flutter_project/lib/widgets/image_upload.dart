@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/providers/barracaImageProvider.dart';
@@ -8,10 +9,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
+import '../models/barraca.dart';
 import 'imagem_barraca.dart';
 
 class ImageUpload extends StatefulWidget {
-  const ImageUpload({Key? key}) : super(key: key);
+  ImageUpload({Key? key, required this.barraca}) : super(key: key);
+
+  Barraca barraca;
 
   @override
   State<ImageUpload> createState() => _ImageUploadState();
@@ -37,38 +41,40 @@ class _ImageUploadState extends State<ImageUpload> {
           bottom: 0,
           right: 4,
           child: BuildEditIcon(
-              primaryColor: primaryColor,
-              secondaryColor: secondaryColor,
-              // todo callback p funcao q faz escolha entre camera e galeria
-              callback: imgFromCamera),
+            primaryColor: primaryColor,
+            secondaryColor: secondaryColor,
+            // todo callback p funcao q faz escolha entre camera e galeria
+            callback: imgFromCamera,
+            barraca: widget.barraca,
+          ),
         ),
       ],
     );
   }
 
-  Future imgFromGallery(BuildContext context) async {
+  Future imgFromGallery(BuildContext context, Barraca barraca) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
-        uploadFile(context);
+        uploadFile(context, barraca);
       }
     });
   }
 
-  Future imgFromCamera(BuildContext context) async {
+  Future imgFromCamera(BuildContext context, Barraca barraca) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
-        uploadFile(context);
+        uploadFile(context, barraca);
       }
     });
   }
 
-  Future uploadFile(BuildContext context) async {
+  Future uploadFile(BuildContext context, Barraca barraca) async {
     if (_photo == null) return;
     final fileName = basename(_photo!.path);
     final destination = 'imgsBarracas/$fileName';
@@ -82,6 +88,14 @@ class _ImageUploadState extends State<ImageUpload> {
       var imagePath = Provider.of<ImagePath>(context, listen: false);
       // deveria colocar nome da img da barraca no banco como
       imagePath.setFileName(destination);
+      final docBarraca = FirebaseFirestore.instance
+          .collection('barraca')
+          .doc('TKBAzTHj8Ue2ZmkHNiLb');
+      try {
+        docBarraca.update({'imagemBarraca': destination});
+      } catch (error) {
+        print("Falha ao editar barraca: $error");
+      }
     }
   }
 }

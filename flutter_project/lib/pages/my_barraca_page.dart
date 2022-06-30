@@ -49,7 +49,9 @@ class _MyBarracaState extends State<MyBarracaPage> {
                       children: [
                     ChangeNotifierProvider(
                       create: (context) => ImagePath(barraca.getImgPath()),
-                      child: const ImageUpload(),
+                      child: ImageUpload(
+                        barraca: barraca,
+                      ),
                     ),
                     const SizedBox(height: 40),
                     formFields(),
@@ -179,23 +181,23 @@ class _MyBarracaState extends State<MyBarracaPage> {
         barrierDismissible: false,
         builder: (context) => const Center(child: CircularProgressIndicator()));
 
-    final docUser = FirebaseFirestore.instance.collection('barraca').doc(uid);
-    print("AAAAAAAAAAAAAA");
-    print(nome);
-    print(descricao);
-    if (nome != null)
+    final docBarraca =
+        FirebaseFirestore.instance.collection('barraca').doc(uid);
+    if (nome != null) {
       try {
-        docUser.update({'nomeBarraca': nome});
+        docBarraca.update({'nomeBarraca': nome});
       } catch (error) {
         print("Falha ao editar barraca: $error");
       }
+    }
     ;
-    if (descricao != null)
+    if (descricao != null) {
       try {
-        docUser.update({'descricao': descricao});
+        docBarraca.update({'descricao': descricao});
       } catch (error) {
         print("Falha ao editar barraca: $error");
       }
+    }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
