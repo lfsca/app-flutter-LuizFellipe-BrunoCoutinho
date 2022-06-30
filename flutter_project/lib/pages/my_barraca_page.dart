@@ -84,12 +84,6 @@ class _MyBarracaState extends State<MyBarracaPage> {
           labelText: 'Nome',
           hintText: 'Insira o nome da barraca',
         ),
-        // validator: (String? value) {
-        //   if (value == null || value.isEmpty) {
-        //     return 'Por favor insira o nome da barraca';
-        //   }
-        //   return null;
-        // },
       ),
     );
   }
@@ -103,12 +97,6 @@ class _MyBarracaState extends State<MyBarracaPage> {
           labelText: 'descricao',
           hintText: 'Insira a descrição da barraca',
         ),
-        // validator: (String? value) {
-        //   if (value == null || value.isEmpty) {
-        //     return 'Por favor insira a descrição da barraca';
-        //   }
-        //   return null;
-        // },
       ),
     );
   }
@@ -124,12 +112,6 @@ class _MyBarracaState extends State<MyBarracaPage> {
           labelText: 'coordenadas',
           hintText: 'Insira as coordenadas da barraca',
         ),
-        // validator: (String? value) {
-        //   if (value == null || value.isEmpty) {
-        //     return 'Por favor insira as coordenadas da barraca';
-        //   }
-        //   return null;
-        // },
       ),
     );
   }
@@ -145,12 +127,6 @@ class _MyBarracaState extends State<MyBarracaPage> {
           labelText: 'quentinhas',
           hintText: 'Insira as quentinhas da barraca',
         ),
-        // validator: (String? value) {
-        //   if (value == null || value.isEmpty) {
-        //     return 'Por favor insira as quentinhas da barraca';
-        //   }
-        //   return null;
-        // },
       ),
     );
   }
@@ -183,7 +159,8 @@ class _MyBarracaState extends State<MyBarracaPage> {
 
     final docBarraca =
         FirebaseFirestore.instance.collection('barraca').doc(uid);
-    if (nome != null) {
+
+    if (nome != '') {
       try {
         docBarraca.update({'nomeBarraca': nome});
       } catch (error) {
@@ -191,7 +168,7 @@ class _MyBarracaState extends State<MyBarracaPage> {
       }
     }
     ;
-    if (descricao != null) {
+    if (descricao != '') {
       try {
         docBarraca.update({'descricao': descricao});
       } catch (error) {
