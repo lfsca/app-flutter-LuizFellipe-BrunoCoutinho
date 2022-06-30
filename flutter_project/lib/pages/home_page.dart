@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(
                   child: FutureBuilder<List<Barraca>>(
-                      future: barracas,
+                      future: usuario.atualizaBarracas(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return BarracaListWidget(barracas: snapshot.data);
