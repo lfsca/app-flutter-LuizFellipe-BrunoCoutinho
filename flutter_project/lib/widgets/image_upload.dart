@@ -44,12 +44,43 @@ class _ImageUploadState extends State<ImageUpload> {
             primaryColor: primaryColor,
             secondaryColor: secondaryColor,
             // todo callback p funcao q faz escolha entre camera e galeria
-            callback: imgFromCamera,
+            callback: _displayOptionsDialog,
             barraca: widget.barraca,
           ),
         ),
       ],
     );
+  }
+
+  Future _displayOptionsDialog(BuildContext context, Barraca barraca) async {
+    await _optionsDialogBox(context, barraca);
+  }
+
+  Future<void> _optionsDialogBox(BuildContext context, Barraca barraca) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext newContext) {
+          return AlertDialog(
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  GestureDetector(
+                    child: new Text('Câmera'),
+                    onTap: () => imgFromCamera(context, barraca),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                  ),
+                  GestureDetector(
+                    child: new Text('Galeria'),
+                    onTap: () => imgFromGallery(context, barraca),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   Future imgFromGallery(BuildContext context, Barraca barraca) async {
