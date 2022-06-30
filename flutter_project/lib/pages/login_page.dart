@@ -35,13 +35,22 @@ class _LoginWidgetState extends State<LoginWidget> {
         appBar: AppBar(
           title: const Text('Login'),
         ),
-        body: Container(
-            color: const Color.fromARGB(218, 160, 209, 219),
+        body: SingleChildScrollView(
             child: Container(
+          color: const Color.fromARGB(218, 160, 209, 219),
+          child: Container(
               margin: const EdgeInsets.all(16),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Container(
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                          image: ExactAssetImage("assets/img/logo.png"),
+                        ))),
+                    const SizedBox(height: 20),
                     Card(
                         color: const Color.fromARGB(222, 250, 250, 250),
                         child: Column(children: [
@@ -81,8 +90,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                       onPressed: signIn,
                     ),
-                  ]),
-            )));
+                    const SizedBox(height: 100),
+                  ])),
+        )));
   }
 
   Future signIn() async {

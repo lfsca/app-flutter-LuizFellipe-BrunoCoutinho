@@ -29,7 +29,15 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         drawer: sideMenu(context),
         appBar: AppBar(
-            title: const Text('Hora do Rango PUC-Rio'),
+            title: Row(children: [
+              const Text('Hora do Rango PUC-Rio'),
+              const Text('   '),
+              Image.asset(
+                "assets/img/logo.png",
+                fit: BoxFit.contain,
+                height: 32,
+              )
+            ]),
             leading: Builder(
                 builder: (context) => IconButton(
                       icon: const Icon(Icons.menu),
